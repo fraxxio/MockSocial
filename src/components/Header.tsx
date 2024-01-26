@@ -10,7 +10,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
-import { ModeToggle } from "../ModeToggle";
+import { ModeToggle } from "./ModeToggle";
 
 export const Header = () => {
   return (
@@ -20,7 +20,7 @@ export const Header = () => {
           <h1 className='font-semibold text-2xl'>MockSocial</h1>
         </Link>
         <NavigationMenu>
-          <NavigationMenuList className='gap-5'>
+          <NavigationMenuList className='gap-1'>
             <NavigationMenuItem>
               <ModeToggle />
             </NavigationMenuItem>
