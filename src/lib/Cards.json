@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Twitter / X",
+    "description": "Posts, comments, messages.",
+    "img": "/Example.png"
+  },
+  {
+    "title": "Discord",
+    "description": "Messages",
+    "img": "/Example.png"
+  },
+  {
+    "title": "Facebook",
+    "description": "Posts, comments, messages.",
+    "img": "/Example.png"
+  },
+  {
+    "title": "Youtube",
+    "description": "Videos, community posts.",
+    "img": "/Example.png"
+  },
+  {
+    "title": "Instagram",
+    "description": "Posts, messages, stories.",
+    "img": "/Example.png"
+  },
+  {
+    "title": "ChatGPT",
+    "description": "Messages",
+    "img": "/Example.png"
+  }
+]
