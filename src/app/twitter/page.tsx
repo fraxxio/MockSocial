@@ -2,6 +2,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TwitterPost from "./TwitterPost";
 import TwitterDM from "./TwitterDM";
 import TwitterComment from "./TwitterComment";
+import PostPic from "./PostPic";
+import CommentPic from "./CommentPic";
+import DMpic from "./DMpic";
 
 export default function TabsDemo() {
   return (
@@ -13,26 +16,20 @@ export default function TabsDemo() {
           <TabsTrigger value='dm'>DM</TabsTrigger>
         </TabsList>
         <TabsContent value='post'>
-          <div className='flex justify-between'>
-            <div>
-              <h1>This is the tweet</h1>
-            </div>
+          <div className='flex justify-around gap-4 items-center'>
+            <PostPic />
             <TwitterPost />
           </div>
         </TabsContent>
         <TabsContent value='comment'>
           <div className='flex justify-between'>
-            <div>
-              <h1>This is the comment</h1>
-            </div>
+            <CommentPic />
             <TwitterComment />
           </div>
         </TabsContent>
         <TabsContent value='dm'>
           <div className='flex justify-between'>
-            <div>
-              <h1>This is the DM</h1>
-            </div>
+            <DMpic />
             <TwitterDM />
           </div>
         </TabsContent>
