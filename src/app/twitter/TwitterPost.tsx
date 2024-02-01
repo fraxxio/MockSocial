@@ -1,64 +1,226 @@
+"use client";
 import React from "react";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { formSchema } from "@/lib/formSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const TwitterPost = () => {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      username: "Username",
+      usernamehandle: "@user",
+      date: 15,
+      text: "Hello",
+      profilepic: undefined,
+      postpic: undefined,
+      comments: 5,
+      reposts: 51,
+      likes: 1500,
+      views: 24111,
+    },
+  });
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values);
+  }
+
   return (
     <Card>
       <CardHeader>
         <CardTitle>Twitter post</CardTitle>
         <CardDescription>Fill out the input fields or leave default value.</CardDescription>
       </CardHeader>
-      <CardContent className='space-y-2'>
-        <div className='space-y-1'>
-          <Label htmlFor='username'>Username</Label>
-          <Input id='username' defaultValue='@peduarte' />
-        </div>
-        <div className='space-y-1'>
-          <Label htmlFor='usernamehandle'>Username handle</Label>
-          <Input id='usernamehandle' defaultValue='@peduarte' />
-        </div>
-        <div className='space-y-1'>
-          <Label htmlFor='date'>Date</Label>
-          <Input id='date' defaultValue='15h' />
-        </div>
-        <div className='space-y-1'>
-          <Label htmlFor='text'>Text</Label>
-          <Input id='text' defaultValue='Tweet text' />
-        </div>
-        <div className='space-y-1'>
-          <Label htmlFor='pic'>Picture</Label>
-          <Input id='pic' type='file' />
-        </div>
-        <div className='space-y-1'>
-          <Label htmlFor='comments'>Comments</Label>
-          <Input id='comments' defaultValue='351' />
-        </div>
-        <div className='space-y-1'>
-          <Label htmlFor='reposts'>Reposts</Label>
-          <Input id='reposts' defaultValue='12' />
-        </div>
-        <div className='space-y-1'>
-          <Label htmlFor='likes'>Likes</Label>
-          <Input id='likes' defaultValue='12000' />
-        </div>
-        <div className='space-y-1'>
-          <Label htmlFor='views'>Views</Label>
-          <Input id='views' defaultValue='58000' />
-        </div>
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-3'>
+            <FormField
+              control={form.control}
+              name='username'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Username</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='usernamehandle'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Username Handle</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='date'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Date</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='text'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Text</FormLabel>
+                  <FormControl>
+                    <Textarea {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='profilepic'
+              render={({ field: { onChange }, ...field }) => (
+                <FormItem>
+                  <FormLabel>Profle Picture</FormLabel>
+                  <FormControl>
+                    <Input
+                      type='file'
+                      {...field}
+                      onChange={(event) => {
+                        // Triggered when user uploaded a new file
+                        // FileList is immutable, so we need to create a new one
+                        const dataTransfer = new DataTransfer();
+                        const images = form.watch("profilepic");
+                        // Add old images
+                        if (images) {
+                          Array.from(images).forEach((image) => dataTransfer.items.add(image));
+                        }
+                        // Add newly uploaded images
+                        Array.from(event.target.files!).forEach((image) =>
+                          dataTransfer.items.add(image)
+                        );
+                        // Validate and update uploaded file
+                        const newFiles = dataTransfer.files;
+                        onChange(newFiles);
+                      }}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='postpic'
+              render={({ field: { onChange }, ...field }) => (
+                <FormItem>
+                  <FormLabel>Post Picture</FormLabel>
+                  <FormControl>
+                    <Input
+                      type='file'
+                      {...field}
+                      onChange={(event) => {
+                        // Triggered when user uploaded a new file
+                        // FileList is immutable, so we need to create a new one
+                        const dataTransfer = new DataTransfer();
+                        const images = form.watch("profilepic");
+                        // Add old images
+                        if (images) {
+                          Array.from(images).forEach((image) => dataTransfer.items.add(image));
+                        }
+                        // Add newly uploaded images
+                        Array.from(event.target.files!).forEach((image) =>
+                          dataTransfer.items.add(image)
+                        );
+                        // Validate and update uploaded file
+                        const newFiles = dataTransfer.files;
+                        onChange(newFiles);
+                      }}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='comments'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Comments</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='reposts'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Reposts</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='likes'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Likes</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='views'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Views</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type='submit'>Generate Picture</Button>
+          </form>
+        </Form>
       </CardContent>
-      <CardFooter>
-        <Button>Generate picture</Button>
-      </CardFooter>
     </Card>
   );
 };
