@@ -1,5 +1,4 @@
 "use client";
-import React from "react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -16,6 +15,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useFormContext } from "@/context/FormContext";
+import { useEffect } from "react";
 
 const TwitterPost = () => {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -33,6 +34,35 @@ const TwitterPost = () => {
       views: 24111,
     },
   });
+
+  const watchForm = form.watch();
+  const { setFormData } = useFormContext();
+
+  useEffect(() => {
+    setFormData({
+      username: watchForm.username || "Username",
+      usernamehandle: watchForm.usernamehandle || "@user",
+      date: watchForm.date || 15,
+      text: watchForm.text || "Hello",
+      profilepic: watchForm.profilepic || null,
+      postpic: watchForm.postpic || null,
+      comments: watchForm.comments || 5,
+      reposts: watchForm.reposts || 51,
+      likes: watchForm.likes || 1500,
+      views: watchForm.views || 24111,
+    });
+  }, [
+    watchForm.username,
+    watchForm.usernamehandle,
+    watchForm.date,
+    watchForm.text,
+    watchForm.profilepic,
+    watchForm.postpic,
+    watchForm.comments,
+    watchForm.reposts,
+    watchForm.likes,
+    watchForm.views,
+  ]);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
@@ -146,7 +176,7 @@ const TwitterPost = () => {
                         // Triggered when user uploaded a new file
                         // FileList is immutable, so we need to create a new one
                         const dataTransfer = new DataTransfer();
-                        const images = form.watch("profilepic");
+                        const images = form.watch("postpic");
                         // Add old images
                         if (images) {
                           Array.from(images).forEach((image) => dataTransfer.items.add(image));
