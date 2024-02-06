@@ -8,20 +8,20 @@ const PostPic = () => {
 
   return (
     <div className='border-gray-500 border-opacity-45 rounded-md border w-[50%]  p-4'>
-      <div className='flex gap-2'>
+      <div className='grid grid-cols-[8%_92%] w-full'>
         <Avatar>
           <AvatarImage src='https://github.com/shadcn.png' />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
 
-        <div className='w-full'>
+        <div>
           <div className='flex justify-between'>
             <div className='flex gap-3'>
               <h1 className='font-semibold leading-none'>{formData.username}</h1>
               <div className='flex gap-1'>
                 <p className='text-gray-500 leading-none'>{formData.usernamehandle}</p>
                 <p className='text-gray-500 leading-none'>·</p>
-                <p className='text-gray-500 leading-none'>7h</p>
+                <p className='text-gray-500 leading-none'>{formData.date}</p>
               </div>
             </div>
             <svg viewBox='0 0 24 24' className='fill-gray-500 size-5'>
@@ -30,8 +30,7 @@ const PostPic = () => {
               </g>
             </svg>
           </div>
-          {/* TODO fix bug of text overflowing */}
-          <p>{formData.text}</p>
+          <p className='break-words max-w-full'>{formData.text}</p>
           <div className='flex justify-between pt-3'>
             <div className='flex gap-1 items-center'>
               <svg viewBox='0 0 24 24' className='fill-gray-500 size-5'>
