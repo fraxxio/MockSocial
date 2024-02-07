@@ -4,13 +4,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useFormContext } from "@/context/FormContext";
 
 const PostPic = () => {
-  const { formData } = useFormContext();
+  const { formData, postPath, profilePath } = useFormContext();
 
   return (
     <div className='border-gray-500 border-opacity-45 rounded-md border w-[50%]  p-4'>
       <div className='grid grid-cols-[8%_92%] w-full'>
         <Avatar>
-          <AvatarImage src='https://github.com/shadcn.png' />
+          <AvatarImage src={profilePath || "https://github.com/shadcn.png"} />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
 
