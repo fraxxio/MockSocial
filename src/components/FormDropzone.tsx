@@ -1,8 +1,9 @@
+import { useState } from "react";
 import { useDropzone } from "@uploadthing/react";
 import { generateClientDropzoneAccept } from "uploadthing/client";
 import { useUploadThing } from "@/lib/uploadthing";
-import { useState } from "react";
 import { useFormContext } from "@/context/FormContext";
+import { imgCleanup } from "@/lib/imgCleanup";
 
 type FormProps = {
   endpoint: "profilePic" | "postPic";
@@ -19,6 +20,7 @@ export function FormDropzone({ endpoint }: FormProps) {
   const { startUpload, permittedFileInfo, isUploading } = useUploadThing(endpoint, {
     onClientUploadComplete: (res) => {
       setProfilePath(res[0].url);
+      imgCleanup(res[0].key);
     },
     onUploadError: () => {},
     onUploadBegin: () => {},
@@ -40,8 +42,11 @@ export function FormDropzone({ endpoint }: FormProps) {
           : files.length > 0
           ? (files[0] as any).path || "1 file uploaded" //as any for Ts error because path doesn't exist by default
           : "Choose files or drag and drop"}
-        {/* {files.length > 0 ? "1 file uploaded" : "Choose files or drag and drop"} */}
       </div>
+      <p className='text-gray-500 text-sm'>
+        {fileTypes[0]?.charAt(0).toUpperCase() + fileTypes[0]?.slice(1)}{" "}
+        {permittedFileInfo?.config.image?.maxFileSize}
+      </p>
     </div>
   );
 }
