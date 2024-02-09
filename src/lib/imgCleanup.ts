@@ -1,4 +1,4 @@
-import { appendToStorage, removeStringFromStorage, getStorage } from "@/lib/localStorage";
+import { appendToStorage, removeStringFromStorage, getStorage } from "@/lib/keyStorage";
 
 const deleteImage = async (key: string) => {
   try {
@@ -27,5 +27,5 @@ export function imgCleanup(key: string, endpoint: string) {
   }
   deleteImage(storage[0]);
   appendToStorage(key, endpoint);
-  removeStringFromStorage(0, endpoint);
+  removeStringFromStorage(endpoint);
 }
