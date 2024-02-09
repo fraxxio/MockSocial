@@ -20,10 +20,11 @@ export function FormDropzone({ endpoint }: FormProps) {
   const { startUpload, permittedFileInfo, isUploading } = useUploadThing(endpoint, {
     onClientUploadComplete: (res) => {
       setProfilePath(res[0].url);
-      imgCleanup(res[0].key);
+      imgCleanup(res[0].key, endpoint);
     },
-    onUploadError: () => {},
-    onUploadBegin: () => {},
+    onUploadError: () => {
+      alert("Something went wrong while uploading the image.");
+    },
   });
 
   const fileTypes = permittedFileInfo?.config ? Object.keys(permittedFileInfo?.config) : [];

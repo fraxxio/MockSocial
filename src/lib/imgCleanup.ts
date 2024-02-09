@@ -19,13 +19,13 @@ const deleteImage = async (key: string) => {
   }
 };
 
-export function imgCleanup(key: string) {
-  const storage = getStorage();
+export function imgCleanup(key: string, endpoint: string) {
+  const storage = getStorage(endpoint);
   if (storage.length === 0) {
-    appendToStorage(key);
+    appendToStorage(key, endpoint);
     return;
   }
   deleteImage(storage[0]);
-  appendToStorage(key);
-  removeStringFromStorage(0);
+  appendToStorage(key, endpoint);
+  removeStringFromStorage(0, endpoint);
 }
