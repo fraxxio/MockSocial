@@ -18,7 +18,7 @@ export default function TabsDemo() {
             <TabsTrigger value='dm'>DM</TabsTrigger>
           </TabsList>
           <TabsContent value='post'>
-            <div className='flex justify-around gap-4 items-center'>
+            <div className='grid grid-cols-[40rem_40%] gap-1 items-center justify-between place-content-center'>
               <PostPic />
               <TwitterPost />
             </div>

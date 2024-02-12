@@ -19,8 +19,8 @@ export function FormDropzone({ endpoint }: FormProps) {
 
   const { startUpload, permittedFileInfo, isUploading } = useUploadThing(endpoint, {
     onClientUploadComplete: (res) => {
-      setProfilePath(res[0].url);
-      imgCleanup(res[0].key, endpoint);
+      endpoint === "profilePic" ? setProfilePath(res[0].url) : setPostPath(res[0].url);
+      imgCleanup(res[0].key);
     },
     onUploadError: () => {
       alert("Something went wrong while uploading the image.");
