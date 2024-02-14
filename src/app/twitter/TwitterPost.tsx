@@ -63,9 +63,10 @@ const TwitterPost = () => {
   const [state, convert] = useToPng<HTMLDivElement>({
     selector: "#TwitterPost",
     onSuccess: (data) => {
-      const img = new Image();
-      img.src = data;
-      document.body.appendChild(img);
+      setImg(data);
+      // const img = new Image();
+      // img.src = data;
+      // document.body.appendChild(img);
     },
     onError: (error) => console.log("Error", error),
   });

@@ -3,6 +3,8 @@ import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useFormContext } from "@/context/FormContext";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { DownloadIcon } from "lucide-react";
 
 function formatData(count: number) {
   if (count > 999 && count < 9999) {
@@ -21,11 +23,8 @@ const PostPic = () => {
   const { formData, postPath, profilePath, img } = useFormContext();
 
   return (
-    <>
-      <div
-        className='flex gap-4 border-gray-500 border-opacity-45 border h-fit p-4 w-full bg-black'
-        id='TwitterPost'
-      >
+    <div className='flex flex-col gap-6'>
+      <div className='flex gap-4 h-fit p-4 w-full bg-black' id='TwitterPost'>
         <Avatar>
           <AvatarImage src={profilePath || "/Logo.png"} />
           <AvatarFallback>MS</AvatarFallback>
@@ -107,8 +106,32 @@ const PostPic = () => {
           </div>
         </div>
       </div>
-      {/* {img && <Image src={img} width={500} height={500} alt='Generated Image'></Image>} */}
-    </>
+      {img && (
+        <div className='border-gray-500 border-opacity-40 border rounded-sm p-4 text-center'>
+          <p className='font-semibold pb-3'>Generated image:</p>
+          <Image
+            src={img}
+            width={500}
+            height={500}
+            alt='Generated Image'
+            style={{
+              width: "100%",
+            }}
+          />
+          <Button
+            className='mt-3 gap-1'
+            onClick={() => {
+              const link = document.createElement("a");
+              link.href = img;
+              link.download = "generated_image.png";
+              link.click();
+            }}
+          >
+            <DownloadIcon size={16} /> Download
+          </Button>
+        </div>
+      )}
+    </div>
   );
 };
 
