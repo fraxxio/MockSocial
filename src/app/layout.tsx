@@ -10,6 +10,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "MockSocial",
   description: "Create fake social media post images",
+  icons: "/Logo.png",
 };
 
 export default function RootLayout({

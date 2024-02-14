@@ -11,12 +11,14 @@ import {
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
 import { ModeToggle } from "./ModeToggle";
+import Image from "next/image";
 
 export const Header = () => {
   return (
     <header className='border-b  border-opacity-5 backdrop-blur-sm'>
       <nav className='flex justify-between max-sm:flex-col max-sm:gap-2 items-center py-3 container'>
-        <Link href='/'>
+        <Link href='/' className='flex items-center gap-2'>
+          <Image src='/Logo.png' width={32} height={32} alt='Logo' />
           <h1 className='font-semibold text-2xl'>MockSocial</h1>
         </Link>
         <NavigationMenu>
