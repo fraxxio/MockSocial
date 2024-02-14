@@ -8,7 +8,7 @@ type FormContextProviderProps = {
 type FormData = {
   username: string;
   usernamehandle: string;
-  date: number;
+  date: string;
   text: string;
   comments: number;
   reposts: number;
@@ -23,6 +23,8 @@ type TFormContext = {
   setProfilePath: React.Dispatch<React.SetStateAction<string>>;
   postPath: string;
   setPostPath: React.Dispatch<React.SetStateAction<string>>;
+  img: string;
+  setImg: React.Dispatch<React.SetStateAction<string>>;
 };
 
 export const FormContext = createContext<TFormContext | null>(null);
@@ -31,7 +33,7 @@ export default function FormContextProvider({ children }: FormContextProviderPro
   const [formData, setFormData] = useState<FormData>({
     username: "Username",
     usernamehandle: "@user",
-    date: 15,
+    date: "15h",
     text: "Hello",
     comments: 5,
     reposts: 51,
@@ -40,10 +42,20 @@ export default function FormContextProvider({ children }: FormContextProviderPro
   });
   const [profilePath, setProfilePath] = useState<string>("");
   const [postPath, setPostPath] = useState<string>("");
+  const [img, setImg] = useState<string>("");
 
   return (
     <FormContext.Provider
-      value={{ formData, setFormData, profilePath, setProfilePath, postPath, setPostPath }}
+      value={{
+        formData,
+        setFormData,
+        profilePath,
+        setProfilePath,
+        postPath,
+        setPostPath,
+        setImg,
+        img,
+      }}
     >
       {children}
     </FormContext.Provider>

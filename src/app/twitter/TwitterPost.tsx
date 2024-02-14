@@ -18,30 +18,31 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useFormContext } from "@/context/FormContext";
 import { useEffect } from "react";
 import { FormDropzone } from "@/components/FormDropzone";
+import { useToPng } from "@hugocxl/react-to-image";
 
 const TwitterPost = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "Username",
-      usernamehandle: "@user",
-      date: 15,
-      text: "Hello",
+      username: "Mocksocial",
+      usernamehandle: "@mocksocial",
+      date: "15h",
+      text: "If you like this app give us a star on Github!",
       comments: 5,
       reposts: 51,
       likes: 1500,
-      views: 24111,
+      views: 240111,
     },
   });
 
   const watchForm = form.watch();
-  const { setFormData } = useFormContext();
+  const { setFormData, setImg } = useFormContext();
 
   useEffect(() => {
     setFormData({
-      username: watchForm.username || "Username",
-      usernamehandle: watchForm.usernamehandle || "@user",
-      date: watchForm.date || 15,
+      username: watchForm.username || "Mocksocial",
+      usernamehandle: watchForm.usernamehandle || "@mocksocial",
+      date: watchForm.date || "15h",
       text: watchForm.text || "Hello",
       comments: watchForm.comments || 5,
       reposts: watchForm.reposts || 51,
@@ -59,8 +60,19 @@ const TwitterPost = () => {
     watchForm.views,
   ]);
 
+  const [state, convert] = useToPng<HTMLDivElement>({
+    selector: "#TwitterPost",
+    onSuccess: (data) => {
+      const img = new Image();
+      img.src = data;
+      document.body.appendChild(img);
+    },
+    onError: (error) => console.log("Error", error),
+  });
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    convert();
+    //console.log(values);
   }
 
   return (

@@ -6,7 +6,7 @@ const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png", "image/web
 export const formSchema = z.object({
   username: z.string().min(2).max(50),
   usernamehandle: z.string().min(2).max(50),
-  date: z.number(),
+  date: z.string(),
   text: z.string(),
   comments: z.number(),
   reposts: z.number(),
