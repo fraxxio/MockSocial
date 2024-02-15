@@ -19,6 +19,7 @@ import { useFormContext } from "@/context/FormContext";
 import { useEffect } from "react";
 import { FormDropzone } from "@/components/FormDropzone";
 import { useToPng } from "@hugocxl/react-to-image";
+import { Loader2 } from "lucide-react";
 
 const TwitterPost = () => {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -43,7 +44,7 @@ const TwitterPost = () => {
       username: watchForm.username || "Mocksocial",
       usernamehandle: watchForm.usernamehandle || "@mocksocial",
       date: watchForm.date || "15h",
-      text: watchForm.text || "Hello",
+      text: watchForm.text || "",
       comments: watchForm.comments || 5,
       reposts: watchForm.reposts || 51,
       likes: watchForm.likes || 1500,
@@ -60,20 +61,17 @@ const TwitterPost = () => {
     watchForm.views,
   ]);
 
-  const [state, convert] = useToPng<HTMLDivElement>({
+  const [{ isLoading }, convert] = useToPng<HTMLDivElement>({
+    pixelRatio: 2.8,
     selector: "#TwitterPost",
     onSuccess: (data) => {
       setImg(data);
-      // const img = new Image();
-      // img.src = data;
-      // document.body.appendChild(img);
     },
-    onError: (error) => console.log("Error", error),
+    onError: (error) => alert(`Error: ${error}`),
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     convert();
-    //console.log(values);
   }
 
   return (
@@ -152,7 +150,7 @@ const TwitterPost = () => {
                 <FormItem>
                   <FormLabel>Comments</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} type='number' />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -165,7 +163,7 @@ const TwitterPost = () => {
                 <FormItem>
                   <FormLabel>Reposts</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} type='number' />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -178,7 +176,7 @@ const TwitterPost = () => {
                 <FormItem>
                   <FormLabel>Likes</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} type='number' />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -191,13 +189,21 @@ const TwitterPost = () => {
                 <FormItem>
                   <FormLabel>Views</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} type='number' />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            <Button type='submit'>Generate Picture</Button>
+            <Button type='submit' disabled={isLoading} className='gap-1'>
+              {isLoading ? (
+                <>
+                  <Loader2 className='animate-spin w-4 h-4' /> Generating
+                </>
+              ) : (
+                "Generate Picture"
+              )}
+            </Button>
           </form>
         </Form>
       </CardContent>
