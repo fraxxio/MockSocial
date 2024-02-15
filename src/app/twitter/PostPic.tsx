@@ -32,12 +32,21 @@ const PostPic = () => {
 
         <div className='w-full relative'>
           <div className='flex justify-between'>
-            <div className='flex gap-3'>
-              <h1 className='font-semibold leading-none text-lg'>{formData.username}</h1>
+            <div className='flex gap-1 items-start'>
               <div className='flex gap-1'>
-                <p className='text-gray-500 leading-none text-lg'>{formData.usernamehandle}</p>
-                <p className='text-gray-500 leading-none text-lg'>·</p>
-                <p className='text-gray-500 leading-none text-lg'>{formData.date}</p>
+                <h1 className='font-semibold leading-none text-lg'>{formData.username}</h1>
+                {formData.badge === "verified" ? (
+                  <Image src='/twitterBlueBadge.svg' width={17} height={17} alt='' />
+                ) : formData.badge === "company" ? (
+                  <Image src='/twitterGoldBadge.svg' width={18} height={18} alt='' />
+                ) : formData.badge === "government" ? (
+                  <Image src='/twitterGrayBadge.svg' width={18} height={18} alt='' />
+                ) : null}
+              </div>
+              <div className='flex gap-1'>
+                <p className='text-gray-500 leading-none'>@{formData.usernamehandle}</p>
+                <p className='text-gray-500 leading-none'>·</p>
+                <p className='text-gray-500 leading-none'>{formData.date}</p>
               </div>
             </div>
             <svg viewBox='0 0 24 24' className='fill-gray-500 size-5'>

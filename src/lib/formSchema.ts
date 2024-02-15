@@ -9,4 +9,5 @@ export const formSchema = z.object({
   reposts: z.coerce.number(),
   likes: z.coerce.number(),
   views: z.coerce.number(),
+  badge: z.string(),
 });

@@ -20,19 +20,21 @@ import { useEffect } from "react";
 import { FormDropzone } from "@/components/FormDropzone";
 import { useToPng } from "@hugocxl/react-to-image";
 import { Loader2 } from "lucide-react";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const TwitterPost = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "Mocksocial",
-      usernamehandle: "@mocksocial",
+      usernamehandle: "mocksocial",
       date: "15h",
       text: "If you like this app give us a star on Github!",
       comments: 5,
       reposts: 51,
       likes: 1500,
       views: 240111,
+      badge: "none",
     },
   });
 
@@ -42,13 +44,14 @@ const TwitterPost = () => {
   useEffect(() => {
     setFormData({
       username: watchForm.username || "Mocksocial",
-      usernamehandle: watchForm.usernamehandle || "@mocksocial",
+      usernamehandle: watchForm.usernamehandle || "mocksocial",
       date: watchForm.date || "15h",
       text: watchForm.text || "",
       comments: watchForm.comments || 5,
       reposts: watchForm.reposts || 51,
       likes: watchForm.likes || 1500,
       views: watchForm.views || 24111,
+      badge: watchForm.badge || "none",
     });
   }, [
     watchForm.username,
@@ -59,6 +62,7 @@ const TwitterPost = () => {
     watchForm.reposts,
     watchForm.likes,
     watchForm.views,
+    watchForm.badge,
   ]);
 
   const [{ isLoading }, convert] = useToPng<HTMLDivElement>({
@@ -190,6 +194,48 @@ const TwitterPost = () => {
                   <FormLabel>Views</FormLabel>
                   <FormControl>
                     <Input {...field} type='number' />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='badge'
+              render={({ field }) => (
+                <FormItem className='pb-4'>
+                  <FormLabel>User badge</FormLabel>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      className='flex flex-col space-y-1'
+                    >
+                      <FormItem className='flex items-center space-x-3 space-y-0'>
+                        <FormControl>
+                          <RadioGroupItem value='none' />
+                        </FormControl>
+                        <FormLabel className='font-normal'>None</FormLabel>
+                      </FormItem>
+                      <FormItem className='flex items-center space-x-3 space-y-0'>
+                        <FormControl>
+                          <RadioGroupItem value='verified' />
+                        </FormControl>
+                        <FormLabel className='font-normal'>Verified</FormLabel>
+                      </FormItem>
+                      <FormItem className='flex items-center space-x-3 space-y-0'>
+                        <FormControl>
+                          <RadioGroupItem value='company' />
+                        </FormControl>
+                        <FormLabel className='font-normal'>Company</FormLabel>
+                      </FormItem>
+                      <FormItem className='flex items-center space-x-3 space-y-0'>
+                        <FormControl>
+                          <RadioGroupItem value='government' />
+                        </FormControl>
+                        <FormLabel className='font-normal'>Government organization</FormLabel>
+                      </FormItem>
+                    </RadioGroup>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

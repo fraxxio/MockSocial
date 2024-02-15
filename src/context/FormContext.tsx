@@ -14,6 +14,7 @@ type FormData = {
   reposts: number;
   likes: number;
   views: number;
+  badge: string;
 };
 
 type TFormContext = {
@@ -31,14 +32,15 @@ export const FormContext = createContext<TFormContext | null>(null);
 
 export default function FormContextProvider({ children }: FormContextProviderProps) {
   const [formData, setFormData] = useState<FormData>({
-    username: "Username",
-    usernamehandle: "@user",
+    username: "Mocksocial",
+    usernamehandle: "mocksocial",
     date: "15h",
-    text: "Hello",
+    text: "If you like this app give us a star on Github!",
     comments: 5,
     reposts: 51,
     likes: 1500,
     views: 24111,
+    badge: "none",
   });
   const [profilePath, setProfilePath] = useState<string>("");
   const [postPath, setPostPath] = useState<string>("");
