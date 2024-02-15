@@ -21,6 +21,7 @@ import { FormDropzone } from "@/components/FormDropzone";
 import { useToPng } from "@hugocxl/react-to-image";
 import { Loader2 } from "lucide-react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Switch } from "@/components/ui/switch";
 
 const TwitterPost = () => {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -35,6 +36,7 @@ const TwitterPost = () => {
       likes: 1500,
       views: 240111,
       badge: "none",
+      lightmode: false,
     },
   });
 
@@ -52,6 +54,7 @@ const TwitterPost = () => {
       likes: watchForm.likes || 1500,
       views: watchForm.views || 24111,
       badge: watchForm.badge || "none",
+      lightmode: watchForm.lightmode || false,
     });
   }, [
     watchForm.username,
@@ -63,6 +66,7 @@ const TwitterPost = () => {
     watchForm.likes,
     watchForm.views,
     watchForm.badge,
+    watchForm.lightmode,
   ]);
 
   const [{ isLoading }, convert] = useToPng<HTMLDivElement>({
@@ -190,12 +194,24 @@ const TwitterPost = () => {
               control={form.control}
               name='views'
               render={({ field }) => (
-                <FormItem>
+                <FormItem className='pb-3'>
                   <FormLabel>Views</FormLabel>
                   <FormControl>
                     <Input {...field} type='number' />
                   </FormControl>
                   <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='lightmode'
+              render={({ field }) => (
+                <FormItem className='flex items-center justify-between rounded-lg border p-3'>
+                  <FormLabel className='space-y-0.5'>Use light mode</FormLabel>
+                  <FormControl>
+                    <Switch checked={field.value} onCheckedChange={field.onChange} />
+                  </FormControl>
                 </FormItem>
               )}
             />

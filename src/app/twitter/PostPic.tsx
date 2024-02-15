@@ -24,7 +24,10 @@ const PostPic = () => {
 
   return (
     <div className='flex flex-col gap-6'>
-      <div className='flex gap-4 h-fit p-4 w-full bg-black' id='TwitterPost'>
+      <div
+        id='TwitterPost'
+        className={`flex gap-4 h-fit p-4 w-full ${formData.lightmode ? "bg-white" : "bg-black"}`}
+      >
         <Avatar className='w-11 h-11'>
           <AvatarImage src={profilePath || "/Logo.png"} />
           <AvatarFallback>MS</AvatarFallback>
@@ -34,7 +37,13 @@ const PostPic = () => {
           <div className='flex justify-between'>
             <div className='flex gap-1 items-start'>
               <div className='flex gap-1'>
-                <h1 className='font-semibold leading-none text-lg'>{formData.username}</h1>
+                <h1
+                  className={`font-semibold leading-none text-lg ${
+                    formData.lightmode ? "text-black" : "text-white"
+                  }`}
+                >
+                  {formData.username}
+                </h1>
                 {formData.badge === "verified" ? (
                   <Image src='/twitterBlueBadge.svg' width={17} height={17} alt='' />
                 ) : formData.badge === "company" ? (
@@ -55,7 +64,13 @@ const PostPic = () => {
               </g>
             </svg>
           </div>
-          <p className='break-words max-w-full pb-3 text-lg'>{formData.text}</p>
+          <p
+            className={`break-words max-w-full pb-3 text-lg ${
+              formData.lightmode ? "text-black" : "text-white"
+            }`}
+          >
+            {formData.text}
+          </p>
           {postPath && (
             <Image
               className='border-gray-500 border-opacity-30 border rounded-lg mt-3 mb-2 object-cover'
