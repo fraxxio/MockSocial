@@ -36,7 +36,7 @@ const TwitterPost = () => {
       likes: 1500,
       views: 240111,
       badge: "none",
-      lightmode: false,
+      theme: "black",
     },
   });
 
@@ -54,7 +54,7 @@ const TwitterPost = () => {
       likes: watchForm.likes || 1500,
       views: watchForm.views || 24111,
       badge: watchForm.badge || "none",
-      lightmode: watchForm.lightmode || false,
+      theme: watchForm.theme || "black",
     });
   }, [
     watchForm.username,
@@ -66,7 +66,7 @@ const TwitterPost = () => {
     watchForm.likes,
     watchForm.views,
     watchForm.badge,
-    watchForm.lightmode,
+    watchForm.theme,
   ]);
 
   const [{ isLoading }, convert] = useToPng<HTMLDivElement>({
@@ -194,7 +194,7 @@ const TwitterPost = () => {
               control={form.control}
               name='views'
               render={({ field }) => (
-                <FormItem className='pb-3'>
+                <FormItem>
                   <FormLabel>Views</FormLabel>
                   <FormControl>
                     <Input {...field} type='number' />
@@ -205,13 +205,37 @@ const TwitterPost = () => {
             />
             <FormField
               control={form.control}
-              name='lightmode'
+              name='theme'
               render={({ field }) => (
-                <FormItem className='flex items-center justify-between rounded-lg border p-3'>
-                  <FormLabel className='space-y-0.5'>Use light mode</FormLabel>
+                <FormItem>
+                  <FormLabel>Theme</FormLabel>
                   <FormControl>
-                    <Switch checked={field.value} onCheckedChange={field.onChange} />
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      className='flex flex-col space-y-1'
+                    >
+                      <FormItem className='flex items-center space-x-3 space-y-0'>
+                        <FormControl>
+                          <RadioGroupItem value='black' />
+                        </FormControl>
+                        <FormLabel className='font-normal'>Black</FormLabel>
+                      </FormItem>
+                      <FormItem className='flex items-center space-x-3 space-y-0'>
+                        <FormControl>
+                          <RadioGroupItem value='white' />
+                        </FormControl>
+                        <FormLabel className='font-normal'>White</FormLabel>
+                      </FormItem>
+                      <FormItem className='flex items-center space-x-3 space-y-0'>
+                        <FormControl>
+                          <RadioGroupItem value='dim' />
+                        </FormControl>
+                        <FormLabel className='font-normal'>Dim</FormLabel>
+                      </FormItem>
+                    </RadioGroup>
                   </FormControl>
+                  <FormMessage />
                 </FormItem>
               )}
             />

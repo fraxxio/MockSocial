@@ -15,7 +15,7 @@ type FormData = {
   likes: number;
   views: number;
   badge: string;
-  lightmode: boolean;
+  theme: string;
 };
 
 type TFormContext = {
@@ -42,7 +42,7 @@ export default function FormContextProvider({ children }: FormContextProviderPro
     likes: 1500,
     views: 24111,
     badge: "none",
-    lightmode: false,
+    theme: "black",
   });
   const [profilePath, setProfilePath] = useState<string>("");
   const [postPath, setPostPath] = useState<string>("");

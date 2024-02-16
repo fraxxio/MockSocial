@@ -10,5 +10,5 @@ export const formSchema = z.object({
   likes: z.coerce.number(),
   views: z.coerce.number(),
   badge: z.string(),
-  lightmode: z.boolean(),
+  theme: z.string(),
 });

@@ -26,7 +26,13 @@ const PostPic = () => {
     <div className='flex flex-col gap-6'>
       <div
         id='TwitterPost'
-        className={`flex gap-4 h-fit p-4 w-full ${formData.lightmode ? "bg-white" : "bg-black"}`}
+        className={`flex gap-4 h-fit p-4 w-full ${
+          formData.theme === "white"
+            ? "bg-white"
+            : formData.theme === "black"
+            ? "bg-black"
+            : "bg-[#15202b]"
+        }`}
       >
         <Avatar className='w-11 h-11'>
           <AvatarImage src={profilePath || "/Logo.png"} />
@@ -39,7 +45,9 @@ const PostPic = () => {
               <div className='flex gap-1'>
                 <h1
                   className={`font-semibold leading-none text-lg ${
-                    formData.lightmode ? "text-black" : "text-white"
+                    formData.theme === "black" || formData.theme === "dim"
+                      ? "text-white"
+                      : "text-black"
                   }`}
                 >
                   {formData.username}
@@ -66,7 +74,7 @@ const PostPic = () => {
           </div>
           <p
             className={`break-words max-w-full pb-3 text-lg ${
-              formData.lightmode ? "text-black" : "text-white"
+              formData.theme === "black" || formData.theme === "dim" ? "text-white" : "text-black"
             }`}
           >
             {formData.text}
