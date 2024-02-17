@@ -11,4 +11,9 @@ export const formSchema = z.object({
   views: z.coerce.number(),
   badge: z.string(),
   theme: z.string(),
+  reaction: z.string(),
+  sendertext: z.string(),
+  senderdate: z.string(),
+  senderreaction: z.string(),
+  reverseorder: z.boolean(),
 });

@@ -1,54 +1,314 @@
-import React from "react";
+"use client";
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { formSchema } from "@/lib/formSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useFormContext } from "@/context/FormContext";
+import { useEffect } from "react";
+import { FormDropzone } from "@/components/FormDropzone";
+import { useToPng } from "@hugocxl/react-to-image";
+import { Loader2 } from "lucide-react";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import Link from "next/link";
+import { Switch } from "@/components/ui/switch";
 
-const TwitterDM = () => {
+const TwitterPost = () => {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      username: "Mocksocial",
+      date: "15h",
+      text: "Hello",
+      reaction: "👍",
+      sendertext: "hi",
+      senderdate: "2m",
+      senderreaction: "👍",
+      badge: "none",
+      theme: "black",
+      reverseorder: false,
+    },
+  });
+
+  const watchForm = form.watch();
+  const { setTwitterDMForm, setImg } = useFormContext();
+
+  useEffect(() => {
+    setTwitterDMForm({
+      username: watchForm.username || "Mocksocial",
+      date: watchForm.date || "15h",
+      text: watchForm.text || "",
+      reaction: watchForm.reaction || "👍",
+      sendertext: watchForm.sendertext || "",
+      senderdate: watchForm.senderdate || "2m",
+      senderreaction: watchForm.senderreaction || "👍",
+      badge: "none",
+      theme: "black",
+      reverseorder: watchForm.reverseorder || false,
+    });
+  }, [watchForm.username, watchForm.date, watchForm.text, watchForm.badge, watchForm.theme]);
+
+  const [{ isLoading }, convert] = useToPng<HTMLDivElement>({
+    pixelRatio: 2.8,
+    selector: "#TwitterDM",
+    onSuccess: (data) => {
+      setImg(data);
+    },
+    onError: (error) => alert(`Error: ${error}`),
+  });
+
+  function onSubmit() {
+    convert();
+  }
+
   return (
     <Card>
       <CardHeader>
         <CardTitle>Twitter DM</CardTitle>
         <CardDescription>Fill out the input fields or leave default value.</CardDescription>
       </CardHeader>
-      <CardContent className='space-y-2'>
-        <div className='space-y-1'>
-          <Label htmlFor='username'>Username</Label>
-          <Input id='username' defaultValue='@peduarte' />
-        </div>
-        <div className='space-y-1'>
-          <Label htmlFor='usernamehandle'>Username handle</Label>
-          <Input id='usernamehandle' defaultValue='@peduarte' />
-        </div>
-        <div className='space-y-1'>
-          <Label htmlFor='date'>Date</Label>
-          <Input id='date' defaultValue='15h' />
-        </div>
-        <div className='space-y-1'>
-          <Label htmlFor='text'>Text</Label>
-          <Input id='text' defaultValue='Message text' />
-        </div>
-        <div className='space-y-1'>
-          <Label htmlFor='pic'>Picture</Label>
-          <Input id='pic' type='file' />
-        </div>
-        <div className='space-y-1'>
-          <Label htmlFor='react'>Reaction emoji</Label>
-          <Input id='react' defaultValue='😍' />
-        </div>
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-3'>
+            <FormField
+              control={form.control}
+              name='username'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Recipient Username</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='date'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Date</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='text'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Message text</FormLabel>
+                  <FormControl>
+                    <Textarea {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='reaction'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    Reaction emoji.{" "}
+                    <Link
+                      className='underline text-blue-500'
+                      href={"https://emojipedia.org/twitter"}
+                      rel='noopener noreferrer'
+                      target='_blank'
+                    >
+                      Emoji list
+                    </Link>
+                  </FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormItem>
+              <FormLabel>Message Picture</FormLabel>
+              <FormDropzone endpoint='postPic' />
+            </FormItem>
+            <FormItem className='py-4'>
+              <div className='h-[1px] w-full bg-gray-500 bg-opacity-50'></div>
+            </FormItem>
+            <FormField
+              control={form.control}
+              name='sendertext'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Sender's message text</FormLabel>
+                  <FormControl>
+                    <Textarea {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='senderdate'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Sender's message date</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='senderreaction'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>
+                    Reaction emoji.{" "}
+                    <Link
+                      className='underline text-blue-500'
+                      href={"https://emojipedia.org/twitter"}
+                      rel='noopener noreferrer'
+                      target='_blank'
+                    >
+                      Emoji list
+                    </Link>
+                  </FormLabel>
+                  <FormControl>
+                    <Input {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormItem>
+              <FormLabel>Sender's message picture</FormLabel>
+              <FormDropzone endpoint='postPic' />
+            </FormItem>
+            <FormField
+              control={form.control}
+              name='reverseorder'
+              render={({ field }) => (
+                <FormItem className='flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm'>
+                  <div className='space-y-0.5'>
+                    <FormLabel>Reverse message order</FormLabel>
+                  </div>
+                  <FormControl>
+                    <Switch checked={field.value} onCheckedChange={field.onChange} />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='theme'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Theme</FormLabel>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      className='flex flex-col space-y-1'
+                    >
+                      <FormItem className='flex items-center space-x-3 space-y-0'>
+                        <FormControl>
+                          <RadioGroupItem value='black' />
+                        </FormControl>
+                        <FormLabel className='font-normal'>Black</FormLabel>
+                      </FormItem>
+                      <FormItem className='flex items-center space-x-3 space-y-0'>
+                        <FormControl>
+                          <RadioGroupItem value='white' />
+                        </FormControl>
+                        <FormLabel className='font-normal'>White</FormLabel>
+                      </FormItem>
+                      <FormItem className='flex items-center space-x-3 space-y-0'>
+                        <FormControl>
+                          <RadioGroupItem value='dim' />
+                        </FormControl>
+                        <FormLabel className='font-normal'>Dim</FormLabel>
+                      </FormItem>
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='badge'
+              render={({ field }) => (
+                <FormItem className='pb-4'>
+                  <FormLabel>User badge</FormLabel>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      className='flex flex-col space-y-1'
+                    >
+                      <FormItem className='flex items-center space-x-3 space-y-0'>
+                        <FormControl>
+                          <RadioGroupItem value='none' />
+                        </FormControl>
+                        <FormLabel className='font-normal'>None</FormLabel>
+                      </FormItem>
+                      <FormItem className='flex items-center space-x-3 space-y-0'>
+                        <FormControl>
+                          <RadioGroupItem value='verified' />
+                        </FormControl>
+                        <FormLabel className='font-normal'>Verified</FormLabel>
+                      </FormItem>
+                      <FormItem className='flex items-center space-x-3 space-y-0'>
+                        <FormControl>
+                          <RadioGroupItem value='company' />
+                        </FormControl>
+                        <FormLabel className='font-normal'>Company</FormLabel>
+                      </FormItem>
+                      <FormItem className='flex items-center space-x-3 space-y-0'>
+                        <FormControl>
+                          <RadioGroupItem value='government' />
+                        </FormControl>
+                        <FormLabel className='font-normal'>Government organization</FormLabel>
+                      </FormItem>
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type='submit' disabled={isLoading} className='gap-1'>
+              {isLoading ? (
+                <>
+                  <Loader2 className='animate-spin w-4 h-4' /> Generating
+                </>
+              ) : (
+                "Generate Picture"
+              )}
+            </Button>
+          </form>
+        </Form>
       </CardContent>
-      <CardFooter>
-        <Button>Generate picture</Button>
-      </CardFooter>
     </Card>
   );
 };
 
-export default TwitterDM;
+export default TwitterPost;

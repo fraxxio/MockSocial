@@ -5,7 +5,7 @@ type FormContextProviderProps = {
   children: React.ReactNode;
 };
 
-type FormData = {
+type TwitterPostForm = {
   username: string;
   usernamehandle: string;
   date: string;
@@ -18,9 +18,24 @@ type FormData = {
   theme: string;
 };
 
+type TwitterDMForm = {
+  username: string;
+  date: string;
+  text: string;
+  reaction: string;
+  sendertext: string;
+  senderdate: string;
+  senderreaction: string;
+  badge: string;
+  theme: string;
+  reverseorder: boolean;
+};
+
 type TFormContext = {
-  formData: FormData;
-  setFormData: React.Dispatch<React.SetStateAction<FormData>>;
+  twitterPostForm: TwitterPostForm;
+  setTwitterPostForm: React.Dispatch<React.SetStateAction<TwitterPostForm>>;
+  twitterDMForm: TwitterDMForm;
+  setTwitterDMForm: React.Dispatch<React.SetStateAction<TwitterDMForm>>;
   profilePath: string;
   setProfilePath: React.Dispatch<React.SetStateAction<string>>;
   postPath: string;
@@ -32,7 +47,7 @@ type TFormContext = {
 export const FormContext = createContext<TFormContext | null>(null);
 
 export default function FormContextProvider({ children }: FormContextProviderProps) {
-  const [formData, setFormData] = useState<FormData>({
+  const [twitterPostForm, setTwitterPostForm] = useState<TwitterPostForm>({
     username: "Mocksocial",
     usernamehandle: "mocksocial",
     date: "15h",
@@ -44,6 +59,18 @@ export default function FormContextProvider({ children }: FormContextProviderPro
     badge: "none",
     theme: "black",
   });
+  const [twitterDMForm, setTwitterDMForm] = useState<TwitterDMForm>({
+    username: "Mocksocial",
+    date: "15h",
+    text: "hello",
+    reaction: "👍",
+    sendertext: "hi",
+    senderdate: "2m",
+    senderreaction: "",
+    badge: "none",
+    theme: "black",
+    reverseorder: false,
+  });
   const [profilePath, setProfilePath] = useState<string>("");
   const [postPath, setPostPath] = useState<string>("");
   const [img, setImg] = useState<string>("");
@@ -51,8 +78,10 @@ export default function FormContextProvider({ children }: FormContextProviderPro
   return (
     <FormContext.Provider
       value={{
-        formData,
-        setFormData,
+        twitterDMForm,
+        setTwitterDMForm,
+        twitterPostForm,
+        setTwitterPostForm,
         profilePath,
         setProfilePath,
         postPath,

@@ -21,7 +21,6 @@ import { FormDropzone } from "@/components/FormDropzone";
 import { useToPng } from "@hugocxl/react-to-image";
 import { Loader2 } from "lucide-react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Switch } from "@/components/ui/switch";
 
 const TwitterPost = () => {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -41,10 +40,10 @@ const TwitterPost = () => {
   });
 
   const watchForm = form.watch();
-  const { setFormData, setImg } = useFormContext();
+  const { setTwitterPostForm, setImg } = useFormContext();
 
   useEffect(() => {
-    setFormData({
+    setTwitterPostForm({
       username: watchForm.username || "Mocksocial",
       usernamehandle: watchForm.usernamehandle || "mocksocial",
       date: watchForm.date || "15h",
@@ -78,7 +77,7 @@ const TwitterPost = () => {
     onError: (error) => alert(`Error: ${error}`),
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit() {
     convert();
   }
 
