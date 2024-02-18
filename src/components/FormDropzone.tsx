@@ -6,11 +6,11 @@ import { useFormContext } from "@/context/FormContext";
 import { imgCleanup } from "@/lib/imgCleanup";
 
 type FormProps = {
-  endpoint: "profilePic" | "postPic";
+  endpoint: "profilePic" | "postPic" | "msgPic";
 };
 
 export function FormDropzone({ endpoint }: FormProps) {
-  const { setProfilePath, setPostPath } = useFormContext();
+  const { setProfilePath, setPostPath, setMsgImg } = useFormContext();
   const [files, setFiles] = useState<File[]>([]);
   const onDrop = (acceptedFiles: File[]) => {
     setFiles(acceptedFiles);
@@ -19,7 +19,9 @@ export function FormDropzone({ endpoint }: FormProps) {
 
   const { startUpload, permittedFileInfo, isUploading } = useUploadThing(endpoint, {
     onClientUploadComplete: (res) => {
-      endpoint === "profilePic" ? setProfilePath(res[0].url) : setPostPath(res[0].url);
+      if (endpoint === "profilePic") setProfilePath(res[0].url);
+      if (endpoint === "postPic") setPostPath(res[0].url);
+      if (endpoint === "msgPic") setMsgImg(res[0].url);
       imgCleanup(res[0].key);
     },
     onUploadError: () => {

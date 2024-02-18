@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -29,11 +30,11 @@ const TwitterPost = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       username: "Mocksocial",
-      date: "15h",
-      text: "Hello",
+      date: "Jan 30, 2024, 2:03 PM",
+      text: "Yo, what's up?",
       reaction: "👍",
-      sendertext: "hi",
-      senderdate: "2m",
+      sendertext: "",
+      senderdate: "Jan 30, 2024, 5:22 PM",
       senderreaction: "👍",
       badge: "none",
       theme: "black",
@@ -57,7 +58,17 @@ const TwitterPost = () => {
       theme: "black",
       reverseorder: watchForm.reverseorder || false,
     });
-  }, [watchForm.username, watchForm.date, watchForm.text, watchForm.badge, watchForm.theme]);
+  }, [
+    watchForm.username,
+    watchForm.date,
+    watchForm.text,
+    watchForm.badge,
+    watchForm.theme,
+    watchForm.reverseorder,
+    watchForm.sendertext,
+    watchForm.senderdate,
+    watchForm.senderreaction,
+  ]);
 
   const [{ isLoading }, convert] = useToPng<HTMLDivElement>({
     pixelRatio: 2.8,
@@ -68,9 +79,12 @@ const TwitterPost = () => {
     onError: (error) => alert(`Error: ${error}`),
   });
 
-  function onSubmit() {
+  function onSubmit(values: z.infer<typeof formSchema>) {
     convert();
   }
+
+  // TODO find out why onSubmit doesn't work
+  // TODO implement reaction and themes
 
   return (
     <Card>
@@ -86,7 +100,7 @@ const TwitterPost = () => {
               name='username'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Recipient Username</FormLabel>
+                  <FormLabel>Recipient username</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -94,6 +108,10 @@ const TwitterPost = () => {
                 </FormItem>
               )}
             />
+            <FormItem>
+              <FormLabel>Recipient profile picture</FormLabel>
+              <FormDropzone endpoint='profilePic' />
+            </FormItem>
             <FormField
               control={form.control}
               name='date'
@@ -144,7 +162,7 @@ const TwitterPost = () => {
               )}
             />
             <FormItem>
-              <FormLabel>Message Picture</FormLabel>
+              <FormLabel>Message picture</FormLabel>
               <FormDropzone endpoint='postPic' />
             </FormItem>
             <FormItem className='py-4'>
@@ -201,7 +219,7 @@ const TwitterPost = () => {
             />
             <FormItem>
               <FormLabel>Sender's message picture</FormLabel>
-              <FormDropzone endpoint='postPic' />
+              <FormDropzone endpoint='msgPic' />
             </FormItem>
             <FormField
               control={form.control}
@@ -210,6 +228,9 @@ const TwitterPost = () => {
                 <FormItem className='flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm'>
                   <div className='space-y-0.5'>
                     <FormLabel>Reverse message order</FormLabel>
+                    <FormDescription>
+                      Don't forget to use correct dates on messages!
+                    </FormDescription>
                   </div>
                   <FormControl>
                     <Switch checked={field.value} onCheckedChange={field.onChange} />
@@ -295,7 +316,7 @@ const TwitterPost = () => {
                 </FormItem>
               )}
             />
-            <Button type='submit' disabled={isLoading} className='gap-1'>
+            <Button type='submit' disabled={isLoading} className='gap-1' onClick={convert}>
               {isLoading ? (
                 <>
                   <Loader2 className='animate-spin w-4 h-4' /> Generating
