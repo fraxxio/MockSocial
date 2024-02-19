@@ -70,7 +70,7 @@ export default function FormContextProvider({ children }: FormContextProviderPro
     username: "Mocksocial",
     date: "15h",
     text: "hello",
-    reaction: "👍",
+    reaction: "",
     sendertext: "hi",
     senderdate: "2m",
     senderreaction: "",

@@ -25,8 +25,8 @@ const DMpic = () => {
             <Info />
           </div>
           <div
-            className={`bg-black w-full min-h-56 flex gap-4 p-3 justify-end ${
-              twitterDMForm.reverseorder ? "flex-col" : "flex-col-reverse"
+            className={`bg-black w-full min-h-56 flex gap-4 p-3 ${
+              twitterDMForm.reverseorder ? "flex-col justify-start" : "flex-col-reverse justify-end"
             }`}
           >
             <div
@@ -54,7 +54,12 @@ const DMpic = () => {
               >
                 {twitterDMForm.sendertext}
               </div>
-              <p className='text-sm text-gray-500 ml-auto pt-2'>{twitterDMForm.senderdate}</p>
+              {twitterDMForm.senderreaction && (
+                <div className='rounded-xl border border-gray-500 border-opacity-30 w-fit px-1 mt-1.5 ml-auto'>
+                  {twitterDMForm.senderreaction}
+                </div>
+              )}
+              <p className='text-sm text-gray-500 ml-auto pt-1'>{twitterDMForm.senderdate}</p>
             </div>
             <div
               className={`h-fit flex flex-col mr-auto ${
@@ -81,7 +86,12 @@ const DMpic = () => {
               >
                 {twitterDMForm.text}
               </div>
-              <p className='text-sm text-gray-500 pt-2'>{twitterDMForm.date}</p>
+              {twitterDMForm.reaction && (
+                <div className='rounded-xl border border-gray-500 border-opacity-30 w-fit px-1 mt-1.5'>
+                  {twitterDMForm.reaction}
+                </div>
+              )}
+              <p className='text-sm text-gray-500 pt-1'>{twitterDMForm.date}</p>
             </div>
           </div>
           <div className='bg-black w-full h-14 flex justify-center items-center border-t border-gray-500 border-opacity-20'>

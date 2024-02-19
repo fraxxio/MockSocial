@@ -32,10 +32,10 @@ const TwitterPost = () => {
       username: "Mocksocial",
       date: "Jan 30, 2024, 2:03 PM",
       text: "Yo, what's up?",
-      reaction: "👍",
+      reaction: "",
       sendertext: "",
       senderdate: "Jan 30, 2024, 5:22 PM",
-      senderreaction: "👍",
+      senderreaction: "",
       badge: "none",
       theme: "black",
       reverseorder: false,
@@ -50,10 +50,10 @@ const TwitterPost = () => {
       username: watchForm.username || "Mocksocial",
       date: watchForm.date || "15h",
       text: watchForm.text || "",
-      reaction: watchForm.reaction || "👍",
+      reaction: watchForm.reaction || "",
       sendertext: watchForm.sendertext || "",
       senderdate: watchForm.senderdate || "2m",
-      senderreaction: watchForm.senderreaction || "👍",
+      senderreaction: watchForm.senderreaction || "",
       badge: "none",
       theme: "black",
       reverseorder: watchForm.reverseorder || false,
@@ -62,6 +62,7 @@ const TwitterPost = () => {
     watchForm.username,
     watchForm.date,
     watchForm.text,
+    watchForm.reaction,
     watchForm.badge,
     watchForm.theme,
     watchForm.reverseorder,
@@ -79,7 +80,6 @@ const TwitterPost = () => {
     onError: (error) => alert(`Error: ${error}`),
   });
 
-  // TODO find out why onSubmit doesn't work
   // TODO implement reaction and themes
 
   return (
