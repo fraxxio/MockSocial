@@ -40,7 +40,7 @@ const TwitterPost = () => {
   });
 
   const watchForm = form.watch();
-  const { setTwitterPostForm, setImg } = useFormContext();
+  const { setTwitterPostForm, setGeneratedImg } = useFormContext();
 
   useEffect(() => {
     setTwitterPostForm({
@@ -72,7 +72,7 @@ const TwitterPost = () => {
     pixelRatio: 2.8,
     selector: "#TwitterPost",
     onSuccess: (data) => {
-      setImg(data);
+      setGeneratedImg(data);
     },
     onError: (error) => alert(`Error: ${error}`),
   });

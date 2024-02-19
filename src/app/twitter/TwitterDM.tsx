@@ -43,7 +43,7 @@ const TwitterPost = () => {
   });
 
   const watchForm = form.watch();
-  const { setTwitterDMForm, setImg } = useFormContext();
+  const { setTwitterDMForm, setGeneratedImg } = useFormContext();
 
   useEffect(() => {
     setTwitterDMForm({
@@ -74,14 +74,10 @@ const TwitterPost = () => {
     pixelRatio: 2.8,
     selector: "#TwitterDM",
     onSuccess: (data) => {
-      setImg(data);
+      setGeneratedImg(data);
     },
     onError: (error) => alert(`Error: ${error}`),
   });
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    convert();
-  }
 
   // TODO find out why onSubmit doesn't work
   // TODO implement reaction and themes
@@ -94,7 +90,7 @@ const TwitterPost = () => {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-3'>
+          <form className='space-y-3'>
             <FormField
               control={form.control}
               name='username'

@@ -40,8 +40,8 @@ type TFormContext = {
   setProfilePath: React.Dispatch<React.SetStateAction<string>>;
   postPath: string;
   setPostPath: React.Dispatch<React.SetStateAction<string>>;
-  img: string;
-  setImg: React.Dispatch<React.SetStateAction<string>>;
+  generatedImg: string;
+  setGeneratedImg: React.Dispatch<React.SetStateAction<string>>;
   msgImg: string;
   setMsgImg: React.Dispatch<React.SetStateAction<string>>;
 };
@@ -75,7 +75,7 @@ export default function FormContextProvider({ children }: FormContextProviderPro
   });
   const [profilePath, setProfilePath] = useState<string>("");
   const [postPath, setPostPath] = useState<string>("");
-  const [img, setImg] = useState<string>("");
+  const [generatedImg, setGeneratedImg] = useState<string>("");
   const [msgImg, setMsgImg] = useState<string>("");
 
   return (
@@ -89,8 +89,8 @@ export default function FormContextProvider({ children }: FormContextProviderPro
         setProfilePath,
         postPath,
         setPostPath,
-        setImg,
-        img,
+        setGeneratedImg,
+        generatedImg,
         msgImg,
         setMsgImg,
       }}
