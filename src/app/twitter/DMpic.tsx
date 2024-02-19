@@ -10,9 +10,9 @@ const DMpic = () => {
   const { twitterDMForm, msgImg, postPath, profilePath, generatedImg } = useFormContext();
   return (
     <div className='flex flex-col gap-6'>
-      <div className='border-gray-500 border-opacity-40 border rounded-sm p-2'>
-        <h1 className='text-lg font-semibold text-center pb-3'>Preview:</h1>
-        <div className='w-[75%] mx-auto' id='TwitterDM'>
+      <div className='border-gray-500 border-opacity-40 border rounded-sm p-2 flex flex-col items-center'>
+        <h1 className='text-lg font-semibold pb-3'>Preview:</h1>
+        <div className='w-[75%]' id='TwitterDM'>
           <div className='bg-black w-full h-20 border-b border-gray-500 border-opacity-20 flex justify-between items-center px-3'>
             <ArrowLeft />
             <div>
@@ -110,11 +110,11 @@ const DMpic = () => {
           </div>
         </div>
       </div>
-      {generatedImg && (
+      {generatedImg.twitterDM && (
         <div className='border-gray-500 border-opacity-40 border rounded-sm p-4 text-center'>
           <p className='font-semibold pb-3'>Generated image:</p>
           <Image
-            src={generatedImg}
+            src={generatedImg.twitterDM}
             width={500}
             height={500}
             alt='Generated Image'
@@ -126,7 +126,7 @@ const DMpic = () => {
             className='mt-3 gap-1'
             onClick={() => {
               const link = document.createElement("a");
-              link.href = generatedImg;
+              link.href = generatedImg.twitterDM;
               link.download = "MockSocial_Twitter_DM.png";
               link.click();
             }}

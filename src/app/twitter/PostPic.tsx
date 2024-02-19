@@ -143,11 +143,11 @@ const PostPic = () => {
           </div>
         </div>
       </div>
-      {generatedImg && (
+      {generatedImg.twitterPost && (
         <div className='border-gray-500 border-opacity-40 border rounded-sm p-4 text-center'>
           <p className='font-semibold pb-3'>Generated image:</p>
           <Image
-            src={generatedImg}
+            src={generatedImg.twitterPost}
             width={500}
             height={500}
             alt='Generated Image'
@@ -159,7 +159,7 @@ const PostPic = () => {
             className='mt-3 gap-1'
             onClick={() => {
               const link = document.createElement("a");
-              link.href = generatedImg;
+              link.href = generatedImg.twitterPost;
               link.download = "MockSocial_Twitter_post.png";
               link.click();
             }}

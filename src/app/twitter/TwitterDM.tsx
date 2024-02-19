@@ -74,7 +74,7 @@ const TwitterPost = () => {
     pixelRatio: 2.8,
     selector: "#TwitterDM",
     onSuccess: (data) => {
-      setGeneratedImg(data);
+      setGeneratedImg((prevdata) => ({ ...prevdata, twitterDM: data }));
     },
     onError: (error) => alert(`Error: ${error}`),
   });

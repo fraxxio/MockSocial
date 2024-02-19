@@ -72,14 +72,10 @@ const TwitterPost = () => {
     pixelRatio: 2.8,
     selector: "#TwitterPost",
     onSuccess: (data) => {
-      setGeneratedImg(data);
+      setGeneratedImg((prevdata) => ({ ...prevdata, twitterPost: data }));
     },
     onError: (error) => alert(`Error: ${error}`),
   });
-
-  function onSubmit() {
-    convert();
-  }
 
   return (
     <Card>
@@ -89,7 +85,7 @@ const TwitterPost = () => {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-3'>
+          <form className='space-y-3'>
             <FormField
               control={form.control}
               name='username'
@@ -280,7 +276,7 @@ const TwitterPost = () => {
                 </FormItem>
               )}
             />
-            <Button type='submit' disabled={isLoading} className='gap-1'>
+            <Button type='submit' disabled={isLoading} className='gap-1' onClick={convert}>
               {isLoading ? (
                 <>
                   <Loader2 className='animate-spin w-4 h-4' /> Generating

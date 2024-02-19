@@ -40,10 +40,15 @@ type TFormContext = {
   setProfilePath: React.Dispatch<React.SetStateAction<string>>;
   postPath: string;
   setPostPath: React.Dispatch<React.SetStateAction<string>>;
-  generatedImg: string;
-  setGeneratedImg: React.Dispatch<React.SetStateAction<string>>;
+  generatedImg: GeneratedImg;
+  setGeneratedImg: React.Dispatch<React.SetStateAction<GeneratedImg>>;
   msgImg: string;
   setMsgImg: React.Dispatch<React.SetStateAction<string>>;
+};
+
+type GeneratedImg = {
+  twitterPost: string;
+  twitterDM: string;
 };
 
 export const FormContext = createContext<TFormContext | null>(null);
@@ -75,8 +80,11 @@ export default function FormContextProvider({ children }: FormContextProviderPro
   });
   const [profilePath, setProfilePath] = useState<string>("");
   const [postPath, setPostPath] = useState<string>("");
-  const [generatedImg, setGeneratedImg] = useState<string>("");
   const [msgImg, setMsgImg] = useState<string>("");
+  const [generatedImg, setGeneratedImg] = useState<GeneratedImg>({
+    twitterPost: "",
+    twitterDM: "",
+  });
 
   return (
     <FormContext.Provider
