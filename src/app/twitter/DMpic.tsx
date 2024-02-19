@@ -20,7 +20,16 @@ const DMpic = () => {
                 <AvatarImage src={profilePath || "/Logo.png"} />
                 <AvatarFallback>MS</AvatarFallback>
               </Avatar>
-              <p className='text-sm font-semibold pt-1'>{twitterDMForm.username}</p>
+              <div className='flex gap-1 items-center  pt-1'>
+                <p className='text-sm font-semibold'>{twitterDMForm.username}</p>
+                {twitterDMForm.badge === "verified" ? (
+                  <Image src='/twitterBlueBadge.svg' width={15.5} height={15.5} alt='' />
+                ) : twitterDMForm.badge === "company" ? (
+                  <Image src='/twitterGoldBadge.svg' width={17} height={17} alt='' />
+                ) : twitterDMForm.badge === "government" ? (
+                  <Image src='/twitterGrayBadge.svg' width={17} height={17} alt='' />
+                ) : null}
+              </div>
             </div>
             <Info />
           </div>

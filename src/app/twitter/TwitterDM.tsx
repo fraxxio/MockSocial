@@ -54,8 +54,8 @@ const TwitterPost = () => {
       sendertext: watchForm.sendertext || "",
       senderdate: watchForm.senderdate || "2m",
       senderreaction: watchForm.senderreaction || "",
-      badge: "none",
-      theme: "black",
+      badge: watchForm.badge || "none",
+      theme: watchForm.theme || "black",
       reverseorder: watchForm.reverseorder || false,
     });
   }, [
@@ -79,8 +79,6 @@ const TwitterPost = () => {
     },
     onError: (error) => alert(`Error: ${error}`),
   });
-
-  // TODO implement reaction and themes
 
   return (
     <Card>
@@ -143,7 +141,7 @@ const TwitterPost = () => {
                     Reaction emoji.{" "}
                     <Link
                       className='underline text-blue-500'
-                      href={"https://emojipedia.org/twitter"}
+                      href={"https://www.piliapp.com/twitter-symbols/"}
                       rel='noopener noreferrer'
                       target='_blank'
                     >
@@ -199,7 +197,7 @@ const TwitterPost = () => {
                     Reaction emoji.{" "}
                     <Link
                       className='underline text-blue-500'
-                      href={"https://emojipedia.org/twitter"}
+                      href={"https://www.piliapp.com/twitter-symbols/"}
                       rel='noopener noreferrer'
                       target='_blank'
                     >
