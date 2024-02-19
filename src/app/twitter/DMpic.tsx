@@ -13,15 +13,29 @@ const DMpic = () => {
       <div className='border-gray-500 border-opacity-40 border rounded-sm p-2 flex flex-col items-center'>
         <h1 className='text-lg font-semibold pb-3'>Preview:</h1>
         <div className='w-[75%]' id='TwitterDM'>
-          <div className='bg-black w-full h-20 border-b border-gray-500 border-opacity-20 flex justify-between items-center px-3'>
-            <ArrowLeft />
+          <div
+            className={`w-full h-20 border-b border-gray-500 border-opacity-20 flex justify-between items-center px-3 ${
+              twitterDMForm.theme === "black"
+                ? "bg-black"
+                : twitterDMForm.theme === "white"
+                ? "bg-white"
+                : "bg-[#15202b]"
+            }`}
+          >
+            <ArrowLeft color={`${twitterDMForm.theme === "white" ? "#1d9bf0" : "white"}`} />
             <div>
               <Avatar className='mx-auto'>
                 <AvatarImage src={profilePath || "/Logo.png"} />
                 <AvatarFallback>MS</AvatarFallback>
               </Avatar>
               <div className='flex gap-1 items-center  pt-1'>
-                <p className='text-sm font-semibold'>{twitterDMForm.username}</p>
+                <p
+                  className={`text-sm font-semibold ${
+                    twitterDMForm.theme === "white" ? "text-black" : null
+                  }`}
+                >
+                  {twitterDMForm.username}
+                </p>
                 {twitterDMForm.badge === "verified" ? (
                   <Image src='/twitterBlueBadge.svg' width={15.5} height={15.5} alt='' />
                 ) : twitterDMForm.badge === "company" ? (
@@ -31,11 +45,17 @@ const DMpic = () => {
                 ) : null}
               </div>
             </div>
-            <Info />
+            <Info color={`${twitterDMForm.theme === "white" ? "#1d9bf0" : "white"}`} />
           </div>
           <div
-            className={`bg-black w-full min-h-56 flex gap-4 p-3 ${
+            className={`w-full min-h-56 flex gap-4 p-3 ${
               twitterDMForm.reverseorder ? "flex-col justify-start" : "flex-col-reverse justify-end"
+            } ${
+              twitterDMForm.theme === "black"
+                ? "bg-black"
+                : twitterDMForm.theme === "white"
+                ? "bg-white"
+                : "bg-[#15202b]"
             }`}
           >
             <div
@@ -89,8 +109,14 @@ const DMpic = () => {
                 />
               )}
               <div
-                className={`py-2 px-3.5 bg-[#2f3336] rounded-3xl rounded-bl-sm w-fit max-w-80 break-words ${
+                className={`py-2 px-3.5 rounded-3xl rounded-bl-sm w-fit max-w-80 break-words ${
                   !twitterDMForm.text && "hidden"
+                } ${
+                  twitterDMForm.theme === "black"
+                    ? "bg-[#2f3336]"
+                    : twitterDMForm.theme === "white"
+                    ? "bg-white text-black"
+                    : "bg-[#3d5466]"
                 }`}
               >
                 {twitterDMForm.text}
@@ -103,8 +129,24 @@ const DMpic = () => {
               <p className='text-sm text-gray-500 pt-1'>{twitterDMForm.date}</p>
             </div>
           </div>
-          <div className='bg-black w-full h-14 flex justify-center items-center border-t border-gray-500 border-opacity-20'>
-            <div className='w-[98%] h-[80%] rounded-2xl bg-[#202327] flex items-center gap-6 px-4'>
+          <div
+            className={`w-full h-14 flex justify-center items-center border-t border-gray-500 border-opacity-20 ${
+              twitterDMForm.theme === "black"
+                ? "bg-black"
+                : twitterDMForm.theme === "white"
+                ? "bg-white"
+                : "bg-[#15202b]"
+            }`}
+          >
+            <div
+              className={`w-[98%] h-[80%] rounded-2xl flex items-center gap-6 px-4 ${
+                twitterDMForm.theme === "black"
+                  ? "bg-[#202327]"
+                  : twitterDMForm.theme === "white"
+                  ? "null"
+                  : "bg-[#273340]"
+              }`}
+            >
               <div className='flex items-center justify-between gap-3'>
                 <svg viewBox='0 0 24 24' className='size-5 fill-[#1d9bf0]'>
                   <g>
