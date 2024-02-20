@@ -2,7 +2,7 @@
   {
     "title": "Twitter / X",
     "description": "Posts, messages.",
-    "img": "/TwitterThumbnail.png",
+    "img": "/twitter/TwitterThumbnail.png",
     "route": "/twitter"
   },
   {

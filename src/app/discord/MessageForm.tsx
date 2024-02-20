@@ -66,6 +66,7 @@ const MessageForm = () => {
     watchForm.theme,
     watchForm.reverseorder,
     watchForm.sendertext,
+    watchForm.senderusername,
     watchForm.senderdate,
     watchForm.senderreaction,
   ]);

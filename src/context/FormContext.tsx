@@ -52,6 +52,8 @@ type TFormContext = {
   profilePath: string;
   setProfilePath: React.Dispatch<React.SetStateAction<string>>;
   postPath: string;
+  setMsgProfilePath: React.Dispatch<React.SetStateAction<string>>;
+  msgProfilePath: string;
   setPostPath: React.Dispatch<React.SetStateAction<string>>;
   generatedImg: GeneratedImg;
   setGeneratedImg: React.Dispatch<React.SetStateAction<GeneratedImg>>;
@@ -107,6 +109,7 @@ export default function FormContextProvider({ children }: FormContextProviderPro
     reverseorder: false,
   });
   const [profilePath, setProfilePath] = useState<string>("");
+  const [msgProfilePath, setMsgProfilePath] = useState<string>("");
   const [postPath, setPostPath] = useState<string>("");
   const [msgImg, setMsgImg] = useState<string>("");
   const [generatedImg, setGeneratedImg] = useState<GeneratedImg>({
@@ -132,6 +135,8 @@ export default function FormContextProvider({ children }: FormContextProviderPro
         setMsgImg,
         discordForm,
         setDiscordForm,
+        msgProfilePath,
+        setMsgProfilePath,
       }}
     >
       {children}

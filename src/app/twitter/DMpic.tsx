@@ -37,11 +37,11 @@ const DMpic = () => {
                   {twitterDMForm.username}
                 </p>
                 {twitterDMForm.badge === "verified" ? (
-                  <Image src='/twitterBlueBadge.svg' width={15.5} height={15.5} alt='' />
+                  <Image src='/twitter/twitterBlueBadge.svg' width={15.5} height={15.5} alt='' />
                 ) : twitterDMForm.badge === "company" ? (
-                  <Image src='/twitterGoldBadge.svg' width={17} height={17} alt='' />
+                  <Image src='/twitter/twitterGoldBadge.svg' width={17} height={17} alt='' />
                 ) : twitterDMForm.badge === "government" ? (
-                  <Image src='/twitterGrayBadge.svg' width={17} height={17} alt='' />
+                  <Image src='/twitter/twitterGrayBadge.svg' width={17} height={17} alt='' />
                 ) : null}
               </div>
             </div>

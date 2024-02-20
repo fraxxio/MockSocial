@@ -55,11 +55,11 @@ const PostPic = () => {
                     {twitterPostForm.username}
                   </h1>
                   {twitterPostForm.badge === "verified" ? (
-                    <Image src='/twitterBlueBadge.svg' width={17} height={17} alt='' />
+                    <Image src='/twitter/twitterBlueBadge.svg' width={17} height={17} alt='' />
                   ) : twitterPostForm.badge === "company" ? (
-                    <Image src='/twitterGoldBadge.svg' width={18} height={18} alt='' />
+                    <Image src='/twitter/twitterGoldBadge.svg' width={18} height={18} alt='' />
                   ) : twitterPostForm.badge === "government" ? (
-                    <Image src='/twitterGrayBadge.svg' width={18} height={18} alt='' />
+                    <Image src='/twitter/twitterGrayBadge.svg' width={18} height={18} alt='' />
                   ) : null}
                 </div>
                 <div className='flex gap-1'>

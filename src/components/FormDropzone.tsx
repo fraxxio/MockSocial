@@ -10,7 +10,7 @@ type FormProps = {
 };
 
 export function FormDropzone({ endpoint }: FormProps) {
-  const { setProfilePath, setPostPath, setMsgImg } = useFormContext();
+  const { setProfilePath, setPostPath, setMsgImg, setMsgProfilePath } = useFormContext();
   const [files, setFiles] = useState<File[]>([]);
   const onDrop = (acceptedFiles: File[]) => {
     setFiles(acceptedFiles);
@@ -22,6 +22,7 @@ export function FormDropzone({ endpoint }: FormProps) {
       if (endpoint === "profilePic") setProfilePath(res[0].url);
       if (endpoint === "postPic") setPostPath(res[0].url);
       if (endpoint === "msgPic") setMsgImg(res[0].url);
+      if (endpoint === "msgProfilePic") setMsgProfilePath(res[0].url);
       imgCleanup(res[0].key);
     },
     onUploadError: () => {
