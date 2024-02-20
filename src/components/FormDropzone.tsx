@@ -6,7 +6,7 @@ import { useFormContext } from "@/context/FormContext";
 import { imgCleanup } from "@/lib/imgCleanup";
 
 type FormProps = {
-  endpoint: "profilePic" | "postPic" | "msgPic";
+  endpoint: "profilePic" | "postPic" | "msgPic" | "msgProfilePic";
 };
 
 export function FormDropzone({ endpoint }: FormProps) {

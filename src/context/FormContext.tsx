@@ -31,6 +31,19 @@ type TwitterDMForm = {
   reverseorder: boolean;
 };
 
+type DiscordForm = {
+  username: string;
+  date: string;
+  text: string;
+  reaction: string;
+  senderusername: string;
+  sendertext: string;
+  senderdate: string;
+  senderreaction: string;
+  theme: string;
+  reverseorder: boolean;
+};
+
 type TFormContext = {
   twitterPostForm: TwitterPostForm;
   setTwitterPostForm: React.Dispatch<React.SetStateAction<TwitterPostForm>>;
@@ -44,11 +57,14 @@ type TFormContext = {
   setGeneratedImg: React.Dispatch<React.SetStateAction<GeneratedImg>>;
   msgImg: string;
   setMsgImg: React.Dispatch<React.SetStateAction<string>>;
+  setDiscordForm: React.Dispatch<React.SetStateAction<DiscordForm>>;
+  discordForm: DiscordForm;
 };
 
 type GeneratedImg = {
   twitterPost: string;
   twitterDM: string;
+  discord: string;
 };
 
 export const FormContext = createContext<TFormContext | null>(null);
@@ -78,12 +94,25 @@ export default function FormContextProvider({ children }: FormContextProviderPro
     theme: "black",
     reverseorder: false,
   });
+  const [discordForm, setDiscordForm] = useState<DiscordForm>({
+    username: "Mocksocial",
+    date: "15h",
+    text: "hello",
+    reaction: "",
+    senderusername: "",
+    sendertext: "hi",
+    senderdate: "2m",
+    senderreaction: "",
+    theme: "black",
+    reverseorder: false,
+  });
   const [profilePath, setProfilePath] = useState<string>("");
   const [postPath, setPostPath] = useState<string>("");
   const [msgImg, setMsgImg] = useState<string>("");
   const [generatedImg, setGeneratedImg] = useState<GeneratedImg>({
     twitterPost: "",
     twitterDM: "",
+    discord: "",
   });
 
   return (
@@ -101,6 +130,8 @@ export default function FormContextProvider({ children }: FormContextProviderPro
         generatedImg,
         msgImg,
         setMsgImg,
+        discordForm,
+        setDiscordForm,
       }}
     >
       {children}

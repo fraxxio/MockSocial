@@ -12,6 +12,7 @@ export const formSchema = z.object({
   badge: z.string(),
   theme: z.string(),
   reaction: z.string(),
+  senderusername: z.string(),
   sendertext: z.string(),
   senderdate: z.string(),
   senderreaction: z.string(),
