@@ -6,20 +6,29 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 export const CardGrid = () => {
   return (
-    <div className='grid gap-2  gap-y-6 grid-cols-4'>
+    <div className='grid gap-2  gap-y-6 grid-cols-3'>
       {Cards.map((UiCard) => {
         return (
-          <Link href={UiCard.route}>
+          <Link href={UiCard.route} key={UiCard.title}>
             <Card
               key={UiCard.title}
-              className='w-[300px] hover:border-gray-500 duration-150 cursor-pointer'
+              className='w-[25rem] h-[20rem] hover:border-gray-500 duration-150 cursor-pointer overflow-hidden relative'
             >
               <CardHeader>
                 <CardTitle>{UiCard.title}</CardTitle>
                 <CardDescription>{UiCard.description}</CardDescription>
               </CardHeader>
               <CardContent>
-                <Image src={UiCard.img} alt='Example' width={700} height={700} />
+                <Image
+                  src={UiCard.img}
+                  alt='Example'
+                  width={100}
+                  height={100}
+                  style={{
+                    width: "100%",
+                  }}
+                  sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                />
               </CardContent>
             </Card>
           </Link>

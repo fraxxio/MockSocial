@@ -1,8 +1,8 @@
 [
   {
     "title": "Twitter / X",
-    "description": "Posts, comments, messages.",
-    "img": "/Example.png",
+    "description": "Posts, messages.",
+    "img": "/TwitterThumbnail.png",
     "route": "/twitter"
   },
   {

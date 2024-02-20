@@ -77,7 +77,7 @@ const TwitterPost = () => {
     onSuccess: (data) => {
       setGeneratedImg((prevdata) => ({ ...prevdata, twitterDM: data }));
     },
-    onError: (error) => alert(`Error: ${error}`),
+    onError: (error) => alert(`Error: ${error}. Try again.`),
   });
 
   return (
