@@ -44,6 +44,17 @@ type DiscordForm = {
   reverseorder: boolean;
 };
 
+type FbForm = {
+  username: string;
+  date: string;
+  text: string;
+  theme: string;
+  badge: string;
+  comments: number;
+  reposts: number;
+  likes: number;
+};
+
 type TFormContext = {
   twitterPostForm: TwitterPostForm;
   setTwitterPostForm: React.Dispatch<React.SetStateAction<TwitterPostForm>>;
@@ -61,12 +72,17 @@ type TFormContext = {
   setMsgImg: React.Dispatch<React.SetStateAction<string>>;
   setDiscordForm: React.Dispatch<React.SetStateAction<DiscordForm>>;
   discordForm: DiscordForm;
+  setFbPostForm: React.Dispatch<React.SetStateAction<FbForm>>;
+  fbPostForm: FbForm;
 };
 
 type GeneratedImg = {
   twitterPost: string;
   twitterDM: string;
   discord: string;
+  fbPost: string;
+  fbComment: string;
+  fbMessage: string;
 };
 
 export const FormContext = createContext<TFormContext | null>(null);
@@ -105,8 +121,18 @@ export default function FormContextProvider({ children }: FormContextProviderPro
     sendertext: "hi",
     senderdate: "2m",
     senderreaction: "",
-    theme: "black",
+    theme: "dark",
     reverseorder: false,
+  });
+  const [fbPostForm, setFbPostForm] = useState<FbForm>({
+    username: "Mocksocial",
+    date: "15h",
+    text: "hello",
+    theme: "dark",
+    badge: "none",
+    comments: 5,
+    reposts: 51,
+    likes: 1500,
   });
   const [profilePath, setProfilePath] = useState<string>("");
   const [msgProfilePath, setMsgProfilePath] = useState<string>("");
@@ -116,6 +142,9 @@ export default function FormContextProvider({ children }: FormContextProviderPro
     twitterPost: "",
     twitterDM: "",
     discord: "",
+    fbPost: "",
+    fbComment: "",
+    fbMessage: "",
   });
 
   return (
@@ -137,6 +166,8 @@ export default function FormContextProvider({ children }: FormContextProviderPro
         setDiscordForm,
         msgProfilePath,
         setMsgProfilePath,
+        fbPostForm,
+        setFbPostForm,
       }}
     >
       {children}
