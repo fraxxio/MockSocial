@@ -44,7 +44,26 @@ const MessagePic = () => {
                   <p className='font-medium text-sm'>{discordForm.username}</p>
                   <p className='text-[#7d838b] text-xs'>{discordForm.date}</p>
                 </div>
-                <p className=''>{discordForm.text}</p>
+                <p>{discordForm.text}</p>
+                {postPath && (
+                  <Image
+                    src={postPath}
+                    alt='Message picture'
+                    width={100}
+                    height={100}
+                    style={{
+                      width: "65%",
+                      maxHeight: "40rem",
+                    }}
+                    sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                    className='rounded-xl mt-1'
+                  />
+                )}
+                {discordForm.reaction && (
+                  <div className='px-1 border border-[#5865f2] rounded-lg w-fit bg-[#373a54] mt-1 font-medium tracking-widest'>
+                    {discordForm.reaction} 1
+                  </div>
+                )}
               </div>
             </div>
             {discordForm.sendertext && (
@@ -58,7 +77,26 @@ const MessagePic = () => {
                     <p className='font-medium text-sm'>{discordForm.senderusername}</p>
                     <p className='text-[#7d838b] text-xs'>{discordForm.senderdate}</p>
                   </div>
-                  <p className=''>{discordForm.sendertext}</p>
+                  <p>{discordForm.sendertext}</p>
+                  {msgImg && (
+                    <Image
+                      src={msgImg}
+                      alt='Message picture'
+                      width={100}
+                      height={100}
+                      style={{
+                        width: "65%",
+                        maxHeight: "40rem",
+                      }}
+                      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                      className='rounded-xl mt-1'
+                    />
+                  )}
+                  {discordForm.senderreaction && (
+                    <div className='px-1 border border-[#5865f2] rounded-lg w-fit bg-[#373a54] mt-1 font-medium tracking-widest'>
+                      {discordForm.senderreaction} 1
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -93,7 +131,7 @@ const MessagePic = () => {
             onClick={() => {
               const link = document.createElement("a");
               link.href = generatedImg.discord;
-              link.download = "MockSocial_Twitter_DM.png";
+              link.download = "MockSocial_Discord.png";
               link.click();
             }}
           >
