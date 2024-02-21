@@ -26,6 +26,8 @@ export const CardGrid = () => {
                   height={100}
                   style={{
                     width: "100%",
+                    maxHeight: "13rem",
+                    objectFit: "contain",
                   }}
                   sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                 />
