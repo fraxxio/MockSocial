@@ -6,6 +6,22 @@ import { DownloadIcon } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
+const TagStyles = (text: string) => {
+  const regex = /(@\w+)/g;
+  const words = text.split(/(@\w+)/g);
+  return words.map((word, index) => {
+    if (regex.test(word)) {
+      return (
+        <span key={index} className='text-[#c1c5f3] bg-[#3d4270] rounded-sm font-medium px-1'>
+          {word}
+        </span>
+      );
+    } else {
+      return <span key={index}>{word}</span>;
+    }
+  });
+};
+
 const MessagePic = () => {
   const { discordForm, msgImg, postPath, profilePath, msgProfilePath, generatedImg } =
     useFormContext();
@@ -63,7 +79,7 @@ const MessagePic = () => {
                   <p className='text-[#7d838b] text-xs'>{discordForm.date}</p>
                 </div>
                 <p className={`${discordForm.theme === "light" ? "text-black" : null}`}>
-                  {discordForm.text}
+                  {TagStyles(discordForm.text)}
                 </p>
                 {postPath && (
                   <Image
@@ -110,7 +126,7 @@ const MessagePic = () => {
                     <p className='text-[#7d838b] text-xs'>{discordForm.senderdate}</p>
                   </div>
                   <p className={`${discordForm.theme === "light" ? "text-black" : null}`}>
-                    {discordForm.sendertext}
+                    {TagStyles(discordForm.sendertext)}
                   </p>
                   {msgImg && (
                     <Image

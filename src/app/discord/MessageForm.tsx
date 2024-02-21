@@ -31,7 +31,7 @@ const MessageForm = () => {
     defaultValues: {
       username: "Mocksocial",
       date: "02/18/2024 11:47 PM",
-      text: "Yo, what's up?",
+      text: "Yo, what's up? @Mocksocial",
       reaction: "",
       senderusername: "",
       sendertext: "",
