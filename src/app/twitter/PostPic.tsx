@@ -5,19 +5,7 @@ import { useFormContext } from "@/context/FormContext";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { DownloadIcon } from "lucide-react";
-
-function formatData(count: number) {
-  if (count > 999 && count < 9999) {
-    return (count / 1000).toFixed(1) + "K";
-  }
-  if (count > 9999 && count < 999999) {
-    return (count / 1000).toFixed(0) + "K";
-  }
-  if (count > 999999) {
-    return (count / 1000000).toFixed(1) + "M";
-  }
-  return count;
-}
+import { formatData } from "@/lib/formatData";
 
 const PostPic = () => {
   const { twitterPostForm, postPath, profilePath, generatedImg } = useFormContext();
