@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { DownloadIcon } from "lucide-react";
 import { formatData } from "@/lib/formatData";
+import GeneratedImg from "@/components/GeneratedImg";
 
 const PostPic = () => {
   const { twitterPostForm, postPath, profilePath, generatedImg } = useFormContext();
@@ -131,31 +132,7 @@ const PostPic = () => {
           </div>
         </div>
       </div>
-      {generatedImg.twitterPost && (
-        <div className='border-gray-500 border-opacity-40 border rounded-sm p-4 text-center'>
-          <p className='font-semibold pb-3'>Generated image:</p>
-          <Image
-            src={generatedImg.twitterPost}
-            width={500}
-            height={500}
-            alt='Generated Image'
-            style={{
-              width: "100%",
-            }}
-          />
-          <Button
-            className='mt-3 gap-1'
-            onClick={() => {
-              const link = document.createElement("a");
-              link.href = generatedImg.twitterPost;
-              link.download = "MockSocial_Twitter_post.png";
-              link.click();
-            }}
-          >
-            <DownloadIcon size={16} /> Download
-          </Button>
-        </div>
-      )}
+      <GeneratedImg path={generatedImg.twitterPost} />
     </div>
   );
 };

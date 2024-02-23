@@ -1,4 +1,5 @@
 "use client";
+import GeneratedImg from "@/components/GeneratedImg";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { useFormContext } from "@/context/FormContext";
@@ -171,31 +172,7 @@ const DMpic = () => {
           </div>
         </div>
       </div>
-      {generatedImg.twitterDM && (
-        <div className='border-gray-500 border-opacity-40 border rounded-sm p-4 text-center'>
-          <p className='font-semibold pb-3'>Generated image:</p>
-          <Image
-            src={generatedImg.twitterDM}
-            width={500}
-            height={500}
-            alt='Generated Image'
-            style={{
-              width: "100%",
-            }}
-          />
-          <Button
-            className='mt-3 gap-1'
-            onClick={() => {
-              const link = document.createElement("a");
-              link.href = generatedImg.twitterDM;
-              link.download = "MockSocial_Twitter_DM.png";
-              link.click();
-            }}
-          >
-            <DownloadIcon size={16} /> Download
-          </Button>
-        </div>
-      )}
+      <GeneratedImg path={generatedImg.twitterDM} />
     </div>
   );
 };
