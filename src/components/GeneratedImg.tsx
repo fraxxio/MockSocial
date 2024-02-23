@@ -23,7 +23,7 @@ const GeneratedImg = ({ path = "" }) => {
             onClick={() => {
               const link = document.createElement("a");
               link.href = path;
-              link.download = "MockSocial_Facebook_post.png";
+              link.download = "MockSocial.png";
               link.click();
             }}
           >

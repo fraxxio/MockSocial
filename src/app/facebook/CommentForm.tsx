@@ -60,7 +60,7 @@ const CommentForm = () => {
     pixelRatio: 2.8,
     selector: "#FacebookComment",
     onSuccess: (data) => {
-      setGeneratedImg((prevdata) => ({ ...prevdata, fbPost: data }));
+      setGeneratedImg((prevdata) => ({ ...prevdata, fbComment: data }));
     },
     onError: (error) => alert(`Error: ${error}. Try again.`),
   });

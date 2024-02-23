@@ -151,7 +151,7 @@ export default function FormContextProvider({ children }: FormContextProviderPro
     username: "Mocksocial",
     date: "15h",
     text: "If you like this app give us a star on Github!",
-    theme: "dark",
+    theme: "light",
     badge: "none",
     comments: 5,
     reposts: 51,

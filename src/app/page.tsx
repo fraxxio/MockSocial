@@ -1,5 +1,5 @@
 import { CardGrid } from "@/components/CardGrid";
-
+//TODO refactor generated component
 export default function Home() {
   return (
     <main className='pt-8 flex flex-col gap-8 justify-around container'>
