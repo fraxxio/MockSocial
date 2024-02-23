@@ -44,7 +44,7 @@ type DiscordForm = {
   reverseorder: boolean;
 };
 
-type FbForm = {
+type FbPostForm = {
   username: string;
   date: string;
   text: string;
@@ -53,6 +53,25 @@ type FbForm = {
   comments: number;
   reposts: number;
   likes: number;
+};
+
+type FbCommentForm = {
+  username: string;
+  date: string;
+  text: string;
+  theme: string;
+  badge: string;
+  likes: number;
+};
+
+type FbMessageForm = {
+  username: string;
+  text: string;
+  reaction: string;
+  senderusername: string;
+  senderreaction: string;
+  sendertext: string;
+  theme: string;
 };
 
 type TFormContext = {
@@ -72,8 +91,12 @@ type TFormContext = {
   setMsgImg: React.Dispatch<React.SetStateAction<string>>;
   setDiscordForm: React.Dispatch<React.SetStateAction<DiscordForm>>;
   discordForm: DiscordForm;
-  setFbPostForm: React.Dispatch<React.SetStateAction<FbForm>>;
-  fbPostForm: FbForm;
+  setFbPostForm: React.Dispatch<React.SetStateAction<FbPostForm>>;
+  fbPostForm: FbPostForm;
+  setFbCommentForm: React.Dispatch<React.SetStateAction<FbCommentForm>>;
+  fbCommentForm: FbCommentForm;
+  setFbMessageForm: React.Dispatch<React.SetStateAction<FbMessageForm>>;
+  fbMessageForm: FbMessageForm;
 };
 
 type GeneratedImg = {
@@ -103,7 +126,7 @@ export default function FormContextProvider({ children }: FormContextProviderPro
   const [twitterDMForm, setTwitterDMForm] = useState<TwitterDMForm>({
     username: "Mocksocial",
     date: "15h",
-    text: "hello",
+    text: "If you like this app give us a star on Github!",
     reaction: "",
     sendertext: "hi",
     senderdate: "2m",
@@ -115,7 +138,7 @@ export default function FormContextProvider({ children }: FormContextProviderPro
   const [discordForm, setDiscordForm] = useState<DiscordForm>({
     username: "Mocksocial",
     date: "15h",
-    text: "hello",
+    text: "If you like this app give us a star on Github!",
     reaction: "",
     senderusername: "",
     sendertext: "hi",
@@ -124,15 +147,32 @@ export default function FormContextProvider({ children }: FormContextProviderPro
     theme: "dark",
     reverseorder: false,
   });
-  const [fbPostForm, setFbPostForm] = useState<FbForm>({
+  const [fbPostForm, setFbPostForm] = useState<FbPostForm>({
     username: "Mocksocial",
     date: "15h",
-    text: "hello",
+    text: "If you like this app give us a star on Github!",
     theme: "dark",
     badge: "none",
     comments: 5,
     reposts: 51,
     likes: 1500,
+  });
+  const [fbCommentForm, setFbCommentForm] = useState<FbCommentForm>({
+    username: "Mocksocial",
+    date: "2m",
+    text: "If you like this app give us a star on Github!",
+    theme: "dark",
+    badge: "none",
+    likes: 15,
+  });
+  const [fbMessageForm, setFbMessageForm] = useState<FbMessageForm>({
+    username: "Mocksocial",
+    text: "If you like this app give us a star on Github!",
+    reaction: "",
+    senderusername: "",
+    senderreaction: "",
+    sendertext: "",
+    theme: "dark",
   });
   const [profilePath, setProfilePath] = useState<string>("");
   const [msgProfilePath, setMsgProfilePath] = useState<string>("");
@@ -168,6 +208,10 @@ export default function FormContextProvider({ children }: FormContextProviderPro
         setMsgProfilePath,
         fbPostForm,
         setFbPostForm,
+        fbCommentForm,
+        setFbCommentForm,
+        fbMessageForm,
+        setFbMessageForm,
       }}
     >
       {children}
