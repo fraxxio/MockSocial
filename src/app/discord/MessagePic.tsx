@@ -79,7 +79,11 @@ const MessagePic = () => {
                   </p>
                   <p className='text-[#7d838b] text-xs'>{discordForm.date}</p>
                 </div>
-                <p className={`${discordForm.theme === "light" ? "text-black" : null}`}>
+                <p
+                  className={`${
+                    discordForm.theme === "light" ? "text-black" : null
+                  } break-words max-w-[39rem]`}
+                >
                   {TagStyles(discordForm.text)}
                 </p>
                 {postPath && (
@@ -126,7 +130,11 @@ const MessagePic = () => {
                     </p>
                     <p className='text-[#7d838b] text-xs'>{discordForm.senderdate}</p>
                   </div>
-                  <p className={`${discordForm.theme === "light" ? "text-black" : null}`}>
+                  <p
+                    className={`${
+                      discordForm.theme === "light" ? "text-black" : null
+                    } break-words max-w-[39rem]`}
+                  >
                     {TagStyles(discordForm.sendertext)}
                   </p>
                   {msgImg && (

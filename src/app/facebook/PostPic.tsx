@@ -95,7 +95,7 @@ const PostPic = () => {
             </div>
           </div>
           <p
-            className={`px-3.5 pt-1 whitespace-pre-line ${
+            className={`px-3.5 pt-1 whitespace-pre-line break-words max-w-[40rem] ${
               fbPostForm.theme === "light" ? "text-[#0c0c0c]" : null
             }`}
           >

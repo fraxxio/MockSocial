@@ -64,7 +64,7 @@ const PostPic = () => {
               </svg>
             </div>
             <p
-              className={`break-words max-w-full pb-2 text-lg ${
+              className={`break-words max-w-[38rem] pb-2 text-lg ${
                 twitterPostForm.theme === "black" || twitterPostForm.theme === "dim"
                   ? "text-white"
                   : "text-black"
