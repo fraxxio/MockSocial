@@ -28,7 +28,7 @@ const VideoForm = () => {
     defaultValues: {
       username: "Mocksocial",
       date: "2 days ago",
-      text: "This video is cool!",
+      text: "If you like this app give us a star on Github!",
       badge: "none",
       views: 20000,
       videolength: "12:51",
@@ -42,7 +42,7 @@ const VideoForm = () => {
   useEffect(() => {
     setYtVideoForm({
       username: watchForm.username || "Mocksocial",
-      text: watchForm.text || "This video is cool!",
+      text: watchForm.text || "",
       date: watchForm.date || "2 days ago",
       views: watchForm.views || 20000,
       badge: watchForm.badge || "none",
