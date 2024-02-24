@@ -73,6 +73,23 @@ type FbMessageForm = {
   reverseorder: boolean;
   theme: string;
 };
+type YtVideoForm = {
+  username: string;
+  text: string;
+  badge: string;
+  views: number;
+  length: string;
+  theme: string;
+};
+
+type YtCommunityForm = {
+  username: string;
+  text: string;
+  date: string;
+  comments: number;
+  likes: number;
+  theme: string;
+};
 
 type TFormContext = {
   twitterPostForm: TwitterPostForm;
@@ -97,6 +114,10 @@ type TFormContext = {
   fbCommentForm: FbCommentForm;
   setFbMessageForm: React.Dispatch<React.SetStateAction<FbMessageForm>>;
   fbMessageForm: FbMessageForm;
+  setYtVideoForm: React.Dispatch<React.SetStateAction<YtVideoForm>>;
+  ytVideoForm: YtVideoForm;
+  setYtCommunityForm: React.Dispatch<React.SetStateAction<YtCommunityForm>>;
+  ytCommunityForm: YtCommunityForm;
 };
 
 type GeneratedImg = {
@@ -106,6 +127,8 @@ type GeneratedImg = {
   fbPost: string;
   fbComment: string;
   fbMessage: string;
+  ytVideo: string;
+  ytCommunity: string;
 };
 
 export const FormContext = createContext<TFormContext | null>(null);
@@ -174,6 +197,22 @@ export default function FormContextProvider({ children }: FormContextProviderPro
     reverseorder: false,
     theme: "dark",
   });
+  const [ytVideoForm, setYtVideoForm] = useState<YtVideoForm>({
+    username: "Mocksocial",
+    text: "If you like this app give us a star on Github!",
+    views: 16000,
+    length: "12:51",
+    badge: "none",
+    theme: "dark",
+  });
+  const [ytCommunityForm, setYtCommunityForm] = useState<YtCommunityForm>({
+    username: "Mocksocial",
+    text: "If you like this app give us a star on Github!",
+    date: "1 day ago",
+    comments: 231,
+    likes: 2000,
+    theme: "dark",
+  });
   const [profilePath, setProfilePath] = useState<string>("");
   const [msgProfilePath, setMsgProfilePath] = useState<string>("");
   const [postPath, setPostPath] = useState<string>("");
@@ -185,6 +224,8 @@ export default function FormContextProvider({ children }: FormContextProviderPro
     fbPost: "",
     fbComment: "",
     fbMessage: "",
+    ytVideo: "",
+    ytCommunity: "",
   });
 
   return (
@@ -212,6 +253,10 @@ export default function FormContextProvider({ children }: FormContextProviderPro
         setFbCommentForm,
         fbMessageForm,
         setFbMessageForm,
+        ytVideoForm,
+        setYtVideoForm,
+        ytCommunityForm,
+        setYtCommunityForm,
       }}
     >
       {children}
