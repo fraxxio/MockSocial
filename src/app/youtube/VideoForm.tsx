@@ -31,7 +31,7 @@ const VideoForm = () => {
       text: "This video is cool!",
       badge: "none",
       views: 20000,
-      length: "12:51",
+      videolength: "12:51",
       theme: "dark",
     },
   });
@@ -46,7 +46,7 @@ const VideoForm = () => {
       date: watchForm.date || "2 days ago",
       views: watchForm.views || 20000,
       badge: watchForm.badge || "none",
-      length: watchForm.length || "12.51",
+      length: watchForm.videolength || "12.51",
       theme: watchForm.theme || "dark",
     });
   }, [
@@ -55,15 +55,15 @@ const VideoForm = () => {
     watchForm.text,
     watchForm.views,
     watchForm.badge,
-    watchForm.length,
+    watchForm.videolength,
     watchForm.theme,
   ]);
 
   const [{ isLoading }, convert] = useToPng<HTMLDivElement>({
     pixelRatio: 2.8,
-    selector: "#FacebookPost",
+    selector: "#YoutubeVideo",
     onSuccess: (data) => {
-      setGeneratedImg((prevdata) => ({ ...prevdata, fbPost: data }));
+      setGeneratedImg((prevdata) => ({ ...prevdata, ytVideo: data }));
     },
     onError: (error) => alert(`Error: ${error}. Try again.`),
   });
@@ -110,6 +110,19 @@ const VideoForm = () => {
                   <FormLabel>Video title</FormLabel>
                   <FormControl>
                     <Textarea {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name='videolength'
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Video Length</FormLabel>
+                  <FormControl>
+                    <Input {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
