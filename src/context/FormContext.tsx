@@ -75,6 +75,7 @@ type FbMessageForm = {
 };
 type YtVideoForm = {
   username: string;
+  date: string;
   text: string;
   badge: string;
   views: number;
@@ -200,6 +201,7 @@ export default function FormContextProvider({ children }: FormContextProviderPro
   const [ytVideoForm, setYtVideoForm] = useState<YtVideoForm>({
     username: "Mocksocial",
     text: "If you like this app give us a star on Github!",
+    date: "2 days ago",
     views: 16000,
     length: "12:51",
     badge: "none",

@@ -17,4 +17,5 @@ export const formSchema = z.object({
   senderdate: z.string(),
   senderreaction: z.string(),
   reverseorder: z.boolean(),
+  length: z.string(),
 });
