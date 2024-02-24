@@ -68,9 +68,9 @@ type FbMessageForm = {
   username: string;
   text: string;
   reaction: string;
-  senderusername: string;
   senderreaction: string;
   sendertext: string;
+  reverseorder: boolean;
   theme: string;
 };
 
@@ -169,9 +169,9 @@ export default function FormContextProvider({ children }: FormContextProviderPro
     username: "Mocksocial",
     text: "If you like this app give us a star on Github!",
     reaction: "",
-    senderusername: "",
     senderreaction: "",
     sendertext: "",
+    reverseorder: false,
     theme: "dark",
   });
   const [profilePath, setProfilePath] = useState<string>("");

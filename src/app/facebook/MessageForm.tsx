@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -32,9 +31,9 @@ const MessageForm = () => {
       username: "Mocksocial",
       text: "If you like this app give us a star on Github!",
       reaction: "",
-      senderusername: "",
       senderreaction: "",
       sendertext: "",
+      reverseorder: false,
       theme: "light",
     },
   });
@@ -47,9 +46,9 @@ const MessageForm = () => {
       username: watchForm.username || "Mocksocial",
       text: watchForm.text || "",
       reaction: watchForm.reaction || "",
-      senderusername: watchForm.senderusername || "",
       sendertext: watchForm.sendertext || "",
       senderreaction: watchForm.senderreaction || "",
+      reverseorder: watchForm.reverseorder || false,
       theme: watchForm.theme || "light",
     });
   }, [
@@ -57,16 +56,16 @@ const MessageForm = () => {
     watchForm.text,
     watchForm.reaction,
     watchForm.sendertext,
-    watchForm.senderusername,
     watchForm.senderreaction,
+    watchForm.reverseorder,
     watchForm.theme,
   ]);
 
   const [{ isLoading }, convert] = useToPng<HTMLDivElement>({
     pixelRatio: 2.8,
-    selector: "#FacebookComment",
+    selector: "#FacebookMessage",
     onSuccess: (data) => {
-      setGeneratedImg((prevdata) => ({ ...prevdata, fbPost: data }));
+      setGeneratedImg((prevdata) => ({ ...prevdata, fbMessage: data }));
     },
     onError: (error) => alert(`Error: ${error}. Try again.`),
   });
@@ -84,7 +83,7 @@ const MessageForm = () => {
               name='username'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel>Recipient username</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -97,7 +96,7 @@ const MessageForm = () => {
               name='text'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Message Text</FormLabel>
+                  <FormLabel>Recipient message Text</FormLabel>
                   <FormControl>
                     <Textarea {...field} />
                   </FormControl>
@@ -106,11 +105,11 @@ const MessageForm = () => {
               )}
             />
             <FormItem>
-              <FormLabel>Profile Picture</FormLabel>
+              <FormLabel>Recipient profile Picture</FormLabel>
               <FormDropzone endpoint='profilePic' />
             </FormItem>
             <FormItem>
-              <FormLabel>Message Picture</FormLabel>
+              <FormLabel>Recipient message Picture</FormLabel>
               <FormDropzone endpoint='postPic' />
             </FormItem>
             <FormField
@@ -119,7 +118,7 @@ const MessageForm = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Reaction emoji.{" "}
+                    Recipient reaction emoji.{" "}
                     <Link
                       className='underline text-blue-500'
                       href={"https://fbicons.net/"}
@@ -141,19 +140,6 @@ const MessageForm = () => {
             </FormItem>
             <FormField
               control={form.control}
-              name='senderusername'
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Sender's username</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
               name='sendertext'
               render={({ field }) => (
                 <FormItem>
@@ -165,10 +151,6 @@ const MessageForm = () => {
                 </FormItem>
               )}
             />
-            <FormItem>
-              <FormLabel>Sender's profile Picture</FormLabel>
-              <FormDropzone endpoint='msgProfilePic' />
-            </FormItem>
             <FormItem>
               <FormLabel>Sender's message picture</FormLabel>
               <FormDropzone endpoint='msgPic' />
@@ -203,9 +185,6 @@ const MessageForm = () => {
                 <FormItem className='flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm'>
                   <div className='space-y-0.5'>
                     <FormLabel>Reverse message order</FormLabel>
-                    <FormDescription>
-                      Don't forget to use correct dates on messages!
-                    </FormDescription>
                   </div>
                   <FormControl>
                     <Switch checked={field.value} onCheckedChange={field.onChange} />
