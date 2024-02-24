@@ -41,11 +41,14 @@ export function FormDropzone({ endpoint }: FormProps) {
     <div {...getRootProps()}>
       <input {...getInputProps()} />
       <div className='py-4 border-dashed border-white border-opacity-20 rounded border-2 text-center font-semibold cursor-pointer'>
-        {isUploading
-          ? "Uploading..."
-          : files.length > 0
-          ? (files[0] as any).path || "1 file uploaded" //as any for Ts error because path doesn't exist by default
-          : "Choose files or drag and drop"}
+        {isUploading ? (
+          <p className='animate-pulse'>Uploading...</p>
+        ) : files.length > 0 ? (
+          <p>{(files[0] as any).path || "1 file uploaded"}</p>
+        ) : (
+          //as any for Ts error because path doesn't exist by default
+          <p>Choose files or drag and drop</p>
+        )}
       </div>
       <p className='text-gray-500 text-sm'>
         {fileTypes[0]?.charAt(0).toUpperCase() + fileTypes[0]?.slice(1)}{" "}

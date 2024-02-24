@@ -20,7 +20,7 @@
   {
     "title": "Youtube",
     "description": "Videos, community posts.",
-    "img": "/Example.png",
+    "img": "/youtube/YoutubeThumbnail.png",
     "route": "/youtube"
   },
   {

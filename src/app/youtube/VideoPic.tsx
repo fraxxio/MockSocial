@@ -13,6 +13,7 @@ const VideoPic = () => {
       <div className='border-gray-500 border-opacity-40 border rounded-sm p-2 flex flex-col items-center'>
         <h1 className='text-lg font-semibold text-center pb-3'>Preview:</h1>
         <div
+          id='YoutubeVideo'
           className={`w-fit min-w-[40rem] p-4 ${
             ytVideoForm.theme === "dark" ? "bg-[#0f0f0f]" : "bg-white"
           }`}
@@ -24,7 +25,7 @@ const VideoPic = () => {
             style={{
               width: "100%",
               maxHeight: "20rem",
-              maxWidth: "40rem",
+              maxWidth: "38rem",
               objectFit: "contain",
             }}
             src={postPath || "/twitter/TwitterThumbnail.png"}
