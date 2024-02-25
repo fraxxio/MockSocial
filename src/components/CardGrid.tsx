@@ -12,7 +12,7 @@ export const CardGrid = () => {
           <Link href={UiCard.route} key={UiCard.title}>
             <Card
               key={UiCard.title}
-              className='w-[25rem] h-[20rem] hover:border-gray-500 duration-150 cursor-pointer overflow-hidden relative'
+              className='w-[25rem] h-[23rem] hover:border-gray-500 duration-150 cursor-pointer overflow-hidden relative'
             >
               <CardHeader>
                 <CardTitle>{UiCard.title}</CardTitle>
@@ -26,7 +26,7 @@ export const CardGrid = () => {
                   height={100}
                   style={{
                     width: "100%",
-                    maxHeight: "13rem",
+                    maxHeight: "15rem",
                     objectFit: "contain",
                   }}
                   sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'

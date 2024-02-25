@@ -28,7 +28,7 @@ const PostForm = () => {
       username: "Mocksocial",
       date: "12h",
       badge: "none",
-      text: "If you like this app give us a star on Github!",
+      text: "If you like this app give us a star on @Github!",
       comments: 52,
       likes: 4055,
       theme: "light",

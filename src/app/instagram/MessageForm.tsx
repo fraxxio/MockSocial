@@ -121,7 +121,7 @@ const MessageForm = () => {
                     Recipient reaction emoji.{" "}
                     <Link
                       className='underline text-blue-500'
-                      href={"https://www.piliapp.com/twitter-symbols/"}
+                      href={"https://smiley.cool/emoji-list.php"}
                       rel='noopener noreferrer'
                       target='_blank'
                     >
@@ -164,7 +164,7 @@ const MessageForm = () => {
                     Sender's reaction emoji.{" "}
                     <Link
                       className='underline text-blue-500'
-                      href={"https://www.piliapp.com/twitter-symbols/"}
+                      href={"https://smiley.cool/emoji-list.php"}
                       rel='noopener noreferrer'
                       target='_blank'
                     >
