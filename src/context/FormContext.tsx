@@ -92,6 +92,28 @@ type YtCommunityForm = {
   theme: string;
 };
 
+type IgPostForm = {
+  username: string;
+  date: string;
+  badge: string;
+  text: string;
+  comments: number;
+  likes: number;
+  theme: string;
+};
+
+type IgMessageForm = {
+  username: string;
+  text: string;
+  reaction: string;
+  senderusername: string;
+  sendertext: string;
+  senderreaction: string;
+  badge: string;
+  theme: string;
+  reverseorder: boolean;
+};
+
 type TFormContext = {
   twitterPostForm: TwitterPostForm;
   setTwitterPostForm: React.Dispatch<React.SetStateAction<TwitterPostForm>>;
@@ -119,6 +141,10 @@ type TFormContext = {
   ytVideoForm: YtVideoForm;
   setYtCommunityForm: React.Dispatch<React.SetStateAction<YtCommunityForm>>;
   ytCommunityForm: YtCommunityForm;
+  setIgPostForm: React.Dispatch<React.SetStateAction<IgPostForm>>;
+  igPostForm: IgPostForm;
+  setIgMessageForm: React.Dispatch<React.SetStateAction<IgMessageForm>>;
+  igMessageForm: IgMessageForm;
 };
 
 type GeneratedImg = {
@@ -130,6 +156,8 @@ type GeneratedImg = {
   fbMessage: string;
   ytVideo: string;
   ytCommunity: string;
+  igPost: string;
+  igMessage: string;
 };
 
 export const FormContext = createContext<TFormContext | null>(null);
@@ -215,6 +243,26 @@ export default function FormContextProvider({ children }: FormContextProviderPro
     likes: 2000,
     theme: "dark",
   });
+  const [igPostForm, setIgPostForm] = useState<IgPostForm>({
+    username: "Mocksocial",
+    text: "If you like this app give us a star on Github!",
+    date: "12h",
+    comments: 52,
+    badge: "none",
+    likes: 4055,
+    theme: "light",
+  });
+  const [igMessageForm, setIgMessageForm] = useState<IgMessageForm>({
+    username: "Mocksocial",
+    text: "If you like this app give us a star on Github!",
+    reaction: "",
+    senderusername: "",
+    sendertext: "",
+    senderreaction: "",
+    reverseorder: false,
+    badge: "none",
+    theme: "dark",
+  });
   const [profilePath, setProfilePath] = useState<string>("");
   const [msgProfilePath, setMsgProfilePath] = useState<string>("");
   const [postPath, setPostPath] = useState<string>("");
@@ -228,6 +276,8 @@ export default function FormContextProvider({ children }: FormContextProviderPro
     fbMessage: "",
     ytVideo: "",
     ytCommunity: "",
+    igPost: "",
+    igMessage: "",
   });
 
   return (
@@ -259,6 +309,10 @@ export default function FormContextProvider({ children }: FormContextProviderPro
         setYtVideoForm,
         ytCommunityForm,
         setYtCommunityForm,
+        igPostForm,
+        setIgPostForm,
+        igMessageForm,
+        setIgMessageForm,
       }}
     >
       {children}
