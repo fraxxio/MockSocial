@@ -106,7 +106,6 @@ type IgMessageForm = {
   username: string;
   text: string;
   reaction: string;
-  senderusername: string;
   sendertext: string;
   senderreaction: string;
   badge: string;
@@ -256,7 +255,6 @@ export default function FormContextProvider({ children }: FormContextProviderPro
     username: "Mocksocial",
     text: "If you like this app give us a star on Github!",
     reaction: "",
-    senderusername: "",
     sendertext: "",
     senderreaction: "",
     reverseorder: false,
