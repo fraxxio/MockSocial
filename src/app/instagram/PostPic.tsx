@@ -6,13 +6,17 @@ import Image from "next/image";
 import React from "react";
 
 const PostPic = () => {
+  const { igPostForm, postPath, profilePath, generatedImg } = useFormContext();
   const TagStyles = (text: string) => {
     const regex = /(@\w+)/g;
     const words = text.split(/(@\w+)/g);
     return words.map((word, index) => {
       if (regex.test(word)) {
         return (
-          <span key={index} className='text-[#2b5984]'>
+          <span
+            key={index}
+            className={`${igPostForm.theme === "light" ? "text-[#2b5984]" : "text-[#7dbffc]"}`}
+          >
             {word}
           </span>
         );
@@ -31,7 +35,6 @@ const PostPic = () => {
     }
     return numArr.join("");
   }
-  const { igPostForm, postPath, profilePath, generatedImg } = useFormContext();
   return (
     <div className='flex flex-col gap-6'>
       <div className='border-gray-500 border-opacity-40 border rounded-sm p-2'>
@@ -61,22 +64,37 @@ const PostPic = () => {
                     </g>
                   </svg>
                 ) : null}
-                <p className={`text-xs ${igPostForm.theme === "light" ? "text-[#7e7e7e]" : null}`}>
+                <p
+                  className={`text-xs ${
+                    igPostForm.theme === "light" ? "text-[#7e7e7e]" : "text-[#a8a8a8]"
+                  }`}
+                >
                   •
                 </p>
-                <p className={`text-sm ${igPostForm.theme === "light" ? "text-[#737373]" : null}`}>
+                <p
+                  className={`text-sm ${
+                    igPostForm.theme === "light" ? "text-[#737373]" : "text-[#a8a8a8]"
+                  }`}
+                >
                   {igPostForm.date}
                 </p>
               </div>
             </div>
-            <svg fill='black' height='24' role='img' viewBox='0 0 24 24' width='24'>
+            <svg
+              fill={`${igPostForm.theme === "light" ? "black" : "#f5f5f5"}`}
+              height='24'
+              viewBox='0 0 24 24'
+              width='24'
+            >
               <circle cx='12' cy='12' r='1.5'></circle>
               <circle cx='6' cy='12' r='1.5'></circle>
               <circle cx='18' cy='12' r='1.5'></circle>
             </svg>
           </div>
           <Image
-            className='mt-3 rounded bg-black'
+            className={`mt-3 rounded bg-black ${
+              igPostForm.theme === "dark" ? "border border-gray-500 border-opacity-40" : null
+            }`}
             width={100}
             height={100}
             style={{
@@ -90,22 +108,37 @@ const PostPic = () => {
           />
           <div className='flex items-center justify-between pt-3'>
             <div className='flex items-center gap-4'>
-              <svg fill='#202020' height='24' viewBox='0 0 24 24' width='24'>
+              <svg
+                fill={`${igPostForm.theme === "light" ? "#202020 " : "#f5f5f5"}`}
+                height='24'
+                viewBox='0 0 24 24'
+                width='24'
+              >
                 <path d='M16.792 3.904A4.989 4.989 0 0 1 21.5 9.122c0 3.072-2.652 4.959-5.197 7.222-2.512 2.243-3.865 3.469-4.303 3.752-.477-.309-2.143-1.823-4.303-3.752C5.141 14.072 2.5 12.167 2.5 9.122a4.989 4.989 0 0 1 4.708-5.218 4.21 4.21 0 0 1 3.675 1.941c.84 1.175.98 1.763 1.12 1.763s.278-.588 1.11-1.766a4.17 4.17 0 0 1 3.679-1.938m0-2a6.04 6.04 0 0 0-4.797 2.127 6.052 6.052 0 0 0-4.787-2.127A6.985 6.985 0 0 0 .5 9.122c0 3.61 2.55 5.827 5.015 7.97.283.246.569.494.853.747l1.027.918a44.998 44.998 0 0 0 3.518 3.018 2 2 0 0 0 2.174 0 45.263 45.263 0 0 0 3.626-3.115l.922-.824c.293-.26.59-.519.885-.774 2.334-2.025 4.98-4.32 4.98-7.94a6.985 6.985 0 0 0-6.708-7.218Z'></path>
               </svg>
-              <svg fill='#202020' height='24' viewBox='0 0 24 24' width='24'>
+              <svg
+                fill={`${igPostForm.theme === "light" ? "#202020 " : "#f5f5f5"}`}
+                height='24'
+                viewBox='0 0 24 24'
+                width='24'
+              >
                 <path
                   d='M20.656 17.008a9.993 9.993 0 1 0-3.59 3.615L22 22Z'
                   fill='none'
-                  stroke='#202020'
+                  stroke={`${igPostForm.theme === "light" ? "#202020 " : "#f5f5f5"}`}
                   strokeLinejoin='round'
                   strokeWidth={2}
                 ></path>
               </svg>
-              <svg fill='#202020' height='24' viewBox='0 0 24 24' width='24'>
+              <svg
+                fill={`${igPostForm.theme === "light" ? "#202020 " : "#f5f5f5"}`}
+                height='24'
+                viewBox='0 0 24 24'
+                width='24'
+              >
                 <line
                   fill='none'
-                  stroke='#202020'
+                  stroke={`${igPostForm.theme === "light" ? "#202020 " : "#f5f5f5"}`}
                   strokeLinejoin='round'
                   strokeWidth={2}
                   x1='22'
@@ -116,34 +149,72 @@ const PostPic = () => {
                 <polygon
                   fill='none'
                   points='11.698 20.334 22 3.001 2 3.001 9.218 10.084 11.698 20.334'
-                  stroke='#202020'
+                  stroke={`${igPostForm.theme === "light" ? "#202020 " : "#f5f5f5"}`}
                   strokeLinejoin='round'
                   strokeWidth={2}
                 ></polygon>
               </svg>
             </div>
-            <svg fill='#202020' height='24' viewBox='0 0 24 24' width='24'>
+            <svg
+              fill={`${igPostForm.theme === "light" ? "#202020 " : "#f5f5f5"}`}
+              height='24'
+              viewBox='0 0 24 24'
+              width='24'
+            >
               <polygon
                 fill='none'
                 points='20 21 12 13.44 4 21 4 3 20 3 20 21'
-                stroke='#202020'
+                stroke={`${igPostForm.theme === "light" ? "#202020 " : "#f5f5f5"}`}
                 strokeLinecap='round'
                 strokeLinejoin='round'
                 strokeWidth={2}
               ></polygon>
             </svg>
           </div>
-          <p className={`font-semibold pt-3 text-black text-sm`}>
+          <p
+            className={`font-semibold pt-3 text-sm ${
+              igPostForm.theme === "light" ? "text-black" : "text-[#f5f5f5]"
+            }`}
+          >
             {addCommasToNumber(igPostForm.likes)} likes
           </p>
           <div className='flex gap-2'>
-            <p className={`font-semibold pt-3 text-black text-sm`}>{igPostForm.username}</p>
-            <p className={`pt-3 text-black text-sm truncate`}>{TagStyles(igPostForm.text)}</p>
+            <p
+              className={`font-semibold pt-3 text-sm ${
+                igPostForm.theme === "light" ? "text-black" : "text-[#f5f5f5]"
+              }`}
+            >
+              {igPostForm.username}
+            </p>
+            <p
+              className={`pt-3 text-sm truncate ${
+                igPostForm.theme === "light" ? "text-black" : "text-[#f5f5f5]"
+              }`}
+            >
+              {TagStyles(igPostForm.text)}
+            </p>
           </div>
-          <p className={`text-sm pt-3 text-[#828282]`}>View all {igPostForm.comments} comments</p>
+          <p
+            className={`text-sm pt-3 ${
+              igPostForm.theme === "light" ? "text-[#828282]" : "text-[#8b8b8b]"
+            }`}
+          >
+            View all {igPostForm.comments} comments
+          </p>
           <div className='flex items-center justify-between pt-1'>
-            <p className={`text-sm text-[#828282]`}>Add a comment...</p>
-            <svg fill='#828282' height='13' viewBox='0 0 24 24' width='13'>
+            <p
+              className={`text-sm ${
+                igPostForm.theme === "light" ? "text-[#828282]" : "text-[#8b8b8b]"
+              }`}
+            >
+              Add a comment...
+            </p>
+            <svg
+              fill={`${igPostForm.theme === "light" ? "#828282" : "#8b8b8b"}`}
+              height='13'
+              viewBox='0 0 24 24'
+              width='13'
+            >
               <path d='M15.83 10.997a1.167 1.167 0 1 0 1.167 1.167 1.167 1.167 0 0 0-1.167-1.167Zm-6.5 1.167a1.167 1.167 0 1 0-1.166 1.167 1.167 1.167 0 0 0 1.166-1.167Zm5.163 3.24a3.406 3.406 0 0 1-4.982.007 1 1 0 1 0-1.557 1.256 5.397 5.397 0 0 0 8.09 0 1 1 0 0 0-1.55-1.263ZM12 .503a11.5 11.5 0 1 0 11.5 11.5A11.513 11.513 0 0 0 12 .503Zm0 21a9.5 9.5 0 1 1 9.5-9.5 9.51 9.51 0 0 1-9.5 9.5Z'></path>
             </svg>
           </div>
