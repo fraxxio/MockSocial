@@ -27,8 +27,7 @@ const MessageForm = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "Mocksocial",
-      text: "How can I help you?",
+      text: "Hello, how can I help you?",
       sendertext: "Hello",
       theme: "dark",
       reverseorder: false,
@@ -40,19 +39,12 @@ const MessageForm = () => {
 
   useEffect(() => {
     setChatGptForm({
-      username: watchForm.username || "Mocksocial",
       text: watchForm.text || "",
       sendertext: watchForm.sendertext || "",
       theme: watchForm.theme || "dark",
       reverseorder: watchForm.reverseorder || false,
     });
-  }, [
-    watchForm.username,
-    watchForm.text,
-    watchForm.sendertext,
-    watchForm.theme,
-    watchForm.reverseorder,
-  ]);
+  }, [watchForm.text, watchForm.sendertext, watchForm.theme, watchForm.reverseorder]);
 
   const [{ isLoading }, convert] = useToPng<HTMLDivElement>({
     pixelRatio: 2.8,
@@ -73,19 +65,6 @@ const MessageForm = () => {
         <CardContent>
           <Form {...form}>
             <form className='space-y-3'>
-              <FormField
-                control={form.control}
-                name='username'
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Username</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
               <FormField
                 control={form.control}
                 name='sendertext'

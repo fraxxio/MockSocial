@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 export const CardGrid = () => {
   return (
-    <div className='grid gap-2  gap-y-6 grid-cols-3'>
+    <div className='grid gap-2 gap-y-6 grid-cols-3'>
       {Cards.map((UiCard) => {
         return (
           <Link href={UiCard.route} key={UiCard.title}>

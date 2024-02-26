@@ -32,7 +32,7 @@
   {
     "title": "ChatGPT",
     "description": "Messages",
-    "img": "/Example.png",
+    "img": "/chatgpt/ChatGptThumbnail.png",
     "route": "/chatgpt"
   }
 ]

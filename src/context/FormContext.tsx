@@ -114,7 +114,6 @@ type IgMessageForm = {
 };
 
 type ChatGptForm = {
-  username: string;
   text: string;
   sendertext: string;
   theme: string;
@@ -273,9 +272,8 @@ export default function FormContextProvider({ children }: FormContextProviderPro
     theme: "dark",
   });
   const [chatGptForm, setChatGptForm] = useState<ChatGptForm>({
-    username: "Mocksocial",
-    text: "If you like this app give us a star on Github!",
-    sendertext: "",
+    text: "Hello, how can I help you?",
+    sendertext: "Hello",
     reverseorder: false,
     theme: "dark",
   });

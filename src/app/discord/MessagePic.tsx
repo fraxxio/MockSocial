@@ -1,9 +1,7 @@
 "use client";
 import GeneratedImg from "@/components/GeneratedImg";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import { useFormContext } from "@/context/FormContext";
-import { DownloadIcon } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
