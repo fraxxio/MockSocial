@@ -6,13 +6,13 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 export const CardGrid = () => {
   return (
-    <div className='grid gap-2 gap-y-6 grid-cols-3'>
+    <div className='grid gap-2 gap-y-6 grid-cols-3 max-xl:grid-cols-2 max-xl:justify-items-center max-[880px]:grid-cols-1'>
       {Cards.map((UiCard) => {
         return (
           <Link href={UiCard.route} key={UiCard.title}>
             <Card
               key={UiCard.title}
-              className='w-[25rem] h-[23rem] hover:border-gray-500 duration-150 cursor-pointer overflow-hidden relative'
+              className='w-[25rem] h-[23rem] hover:border-gray-500 duration-150 cursor-pointer overflow-hidden relative max-[880px]:w-[18rem] max-[880px]:h-[18rem]'
             >
               <CardHeader>
                 <CardTitle>{UiCard.title}</CardTitle>

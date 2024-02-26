@@ -12,6 +12,7 @@ import {
 import Link from "next/link";
 import { ModeToggle } from "./ModeToggle";
 import Image from "next/image";
+import { Star } from "lucide-react";
 
 export const Header = () => {
   return (
@@ -28,20 +29,20 @@ export const Header = () => {
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Legal</NavigationMenuTrigger>
+              <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className='flex flex-col p-1 w-max'>
                   <li>
-                    <Link href='/' legacyBehavior passHref>
+                    <Link href='/termsofservice' legacyBehavior passHref>
                       <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                         Terms of service
                       </NavigationMenuLink>
                     </Link>
                   </li>
                   <li>
-                    <Link href='/' legacyBehavior passHref>
+                    <Link href='/guide' legacyBehavior passHref>
                       <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                        Privacy rules
+                        Guide
                       </NavigationMenuLink>
                     </Link>
                   </li>
@@ -50,9 +51,11 @@ export const Header = () => {
             </NavigationMenuItem>
 
             <NavigationMenuItem>
-              <Link href='/' legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  How to use?
+              <Link href='https://github.com/fraxxio/MockSocial' legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={navigationMenuTriggerStyle() + "cflex items-center gap-2"}
+                >
+                  <Star size={18} /> Star us on Github
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
