@@ -113,6 +113,14 @@ type IgMessageForm = {
   reverseorder: boolean;
 };
 
+type ChatGptForm = {
+  username: string;
+  text: string;
+  sendertext: string;
+  theme: string;
+  reverseorder: boolean;
+};
+
 type TFormContext = {
   twitterPostForm: TwitterPostForm;
   setTwitterPostForm: React.Dispatch<React.SetStateAction<TwitterPostForm>>;
@@ -144,6 +152,8 @@ type TFormContext = {
   igPostForm: IgPostForm;
   setIgMessageForm: React.Dispatch<React.SetStateAction<IgMessageForm>>;
   igMessageForm: IgMessageForm;
+  setChatGptForm: React.Dispatch<React.SetStateAction<ChatGptForm>>;
+  chatGptForm: ChatGptForm;
 };
 
 type GeneratedImg = {
@@ -157,6 +167,7 @@ type GeneratedImg = {
   ytCommunity: string;
   igPost: string;
   igMessage: string;
+  chatGpt: string;
 };
 
 export const FormContext = createContext<TFormContext | null>(null);
@@ -261,6 +272,13 @@ export default function FormContextProvider({ children }: FormContextProviderPro
     badge: "none",
     theme: "dark",
   });
+  const [chatGptForm, setChatGptForm] = useState<ChatGptForm>({
+    username: "Mocksocial",
+    text: "If you like this app give us a star on Github!",
+    sendertext: "",
+    reverseorder: false,
+    theme: "dark",
+  });
   const [profilePath, setProfilePath] = useState<string>("");
   const [msgProfilePath, setMsgProfilePath] = useState<string>("");
   const [postPath, setPostPath] = useState<string>("");
@@ -276,6 +294,7 @@ export default function FormContextProvider({ children }: FormContextProviderPro
     ytCommunity: "",
     igPost: "",
     igMessage: "",
+    chatGpt: "",
   });
 
   return (
@@ -311,6 +330,8 @@ export default function FormContextProvider({ children }: FormContextProviderPro
         setIgPostForm,
         igMessageForm,
         setIgMessageForm,
+        chatGptForm,
+        setChatGptForm,
       }}
     >
       {children}
