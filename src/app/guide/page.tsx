@@ -22,7 +22,7 @@ const page = () => {
           </p>
         </li>
         <li>
-          <p>If you don't want to change the value you can leave the default.</p>
+          <p>If you don&apos;t want to change the value you can leave the default.</p>
         </li>
         <li>
           <p>If you want the value to be hidden leave text field empty or enter a number 0.</p>

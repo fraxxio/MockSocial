@@ -50,6 +50,7 @@ const VideoForm = () => {
       theme: watchForm.theme || "dark",
     });
   }, [
+    setYtVideoForm,
     watchForm.username,
     watchForm.date,
     watchForm.text,

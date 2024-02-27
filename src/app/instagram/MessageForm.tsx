@@ -55,6 +55,7 @@ const MessageForm = () => {
       reverseorder: watchForm.reverseorder || false,
     });
   }, [
+    setIgMessageForm,
     watchForm.username,
     watchForm.text,
     watchForm.reaction,
@@ -147,7 +148,7 @@ const MessageForm = () => {
               name='sendertext'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Sender's message text</FormLabel>
+                  <FormLabel>Sender&apos;s message text</FormLabel>
                   <FormControl>
                     <Textarea {...field} />
                   </FormControl>
@@ -161,7 +162,7 @@ const MessageForm = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Sender's reaction emoji.{" "}
+                    Sender&apos;s reaction emoji.{" "}
                     <Link
                       className='underline text-blue-500'
                       href={"https://smiley.cool/emoji-list.php"}
@@ -179,7 +180,7 @@ const MessageForm = () => {
               )}
             />
             <FormItem>
-              <FormLabel>Sender's message picture</FormLabel>
+              <FormLabel>Sender&apos;s message picture</FormLabel>
               <FormDropzone endpoint='msgPic' />
             </FormItem>
             <FormField
@@ -190,7 +191,7 @@ const MessageForm = () => {
                   <div className='space-y-0.5'>
                     <FormLabel>Reverse message order</FormLabel>
                     <FormDescription>
-                      Don't forget to use correct dates on messages!
+                      Don&apos;t forget to use correct dates on messages!
                     </FormDescription>
                   </div>
                   <FormControl>

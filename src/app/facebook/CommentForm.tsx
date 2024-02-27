@@ -48,6 +48,7 @@ const CommentForm = () => {
       theme: watchForm.theme || "light",
     });
   }, [
+    setFbCommentForm,
     watchForm.username,
     watchForm.date,
     watchForm.text,

@@ -56,6 +56,7 @@ const TwitterPost = () => {
       theme: watchForm.theme || "black",
     });
   }, [
+    setTwitterPostForm,
     watchForm.username,
     watchForm.usernamehandle,
     watchForm.date,

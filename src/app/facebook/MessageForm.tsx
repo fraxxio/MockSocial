@@ -52,6 +52,7 @@ const MessageForm = () => {
       theme: watchForm.theme || "light",
     });
   }, [
+    setFbMessageForm,
     watchForm.username,
     watchForm.text,
     watchForm.reaction,
@@ -143,7 +144,7 @@ const MessageForm = () => {
               name='sendertext'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Sender's message text</FormLabel>
+                  <FormLabel>Sender&apos;s message text</FormLabel>
                   <FormControl>
                     <Textarea {...field} />
                   </FormControl>
@@ -152,7 +153,7 @@ const MessageForm = () => {
               )}
             />
             <FormItem>
-              <FormLabel>Sender's message picture</FormLabel>
+              <FormLabel>Sender&apos;s message picture</FormLabel>
               <FormDropzone endpoint='msgPic' />
             </FormItem>
             <FormField
@@ -161,7 +162,7 @@ const MessageForm = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>
-                    Sender's reaction emoji.{" "}
+                    Sender&apos;s reaction emoji.{" "}
                     <Link
                       className='underline text-blue-500'
                       href={"https://fbicons.net/"}

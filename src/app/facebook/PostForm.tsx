@@ -52,6 +52,7 @@ const PostForm = () => {
       theme: watchForm.theme || "light",
     });
   }, [
+    setFbPostForm,
     watchForm.username,
     watchForm.date,
     watchForm.text,

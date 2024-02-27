@@ -48,6 +48,7 @@ const CommunityForm = () => {
       theme: watchForm.theme || "dark",
     });
   }, [
+    setYtCommunityForm,
     watchForm.username,
     watchForm.date,
     watchForm.text,

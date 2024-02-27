@@ -49,6 +49,7 @@ const PostForm = () => {
       theme: watchForm.theme || "light",
     });
   }, [
+    setIgPostForm,
     watchForm.username,
     watchForm.date,
     watchForm.text,

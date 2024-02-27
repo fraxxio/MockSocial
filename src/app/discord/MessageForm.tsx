@@ -59,6 +59,7 @@ const MessageForm = () => {
       reverseorder: watchForm.reverseorder || false,
     });
   }, [
+    setDiscordForm,
     watchForm.username,
     watchForm.date,
     watchForm.text,
@@ -168,7 +169,7 @@ const MessageForm = () => {
                 name='senderusername'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Sender's username</FormLabel>
+                    <FormLabel>Sender&apos;s username</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
@@ -177,7 +178,7 @@ const MessageForm = () => {
                 )}
               />
               <FormItem>
-                <FormLabel>Sender's profile picture</FormLabel>
+                <FormLabel>Sender&apos;s profile picture</FormLabel>
                 <FormDropzone endpoint='msgProfilePic' />
               </FormItem>
               <FormField
@@ -185,7 +186,7 @@ const MessageForm = () => {
                 name='senderdate'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Sender's message date</FormLabel>
+                    <FormLabel>Sender&apos;s message date</FormLabel>
                     <FormControl>
                       <Input {...field} />
                     </FormControl>
@@ -198,7 +199,7 @@ const MessageForm = () => {
                 name='sendertext'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Sender's message text</FormLabel>
+                    <FormLabel>Sender&apos;s message text</FormLabel>
                     <FormControl>
                       <Textarea {...field} />
                     </FormControl>
@@ -213,7 +214,7 @@ const MessageForm = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>
-                      Reaction to sender's message.{" "}
+                      Reaction to Sender&apos;s message.{" "}
                       <Link
                         className='underline text-blue-500'
                         href={"https://emojis.wiki/discord/"}
@@ -231,7 +232,7 @@ const MessageForm = () => {
                 )}
               />
               <FormItem>
-                <FormLabel>Sender's message picture</FormLabel>
+                <FormLabel>Sender&apos;s message picture</FormLabel>
                 <FormDropzone endpoint='msgPic' />
               </FormItem>
               <FormField
@@ -242,7 +243,7 @@ const MessageForm = () => {
                     <div className='space-y-0.5'>
                       <FormLabel>Reverse message order</FormLabel>
                       <FormDescription>
-                        Don't forget to use correct dates on messages!
+                        Don&apos;t forget to use correct dates on messages!
                       </FormDescription>
                     </div>
                     <FormControl>

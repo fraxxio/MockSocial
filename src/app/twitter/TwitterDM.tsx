@@ -59,6 +59,7 @@ const TwitterPost = () => {
       reverseorder: watchForm.reverseorder || false,
     });
   }, [
+    setTwitterDMForm,
     watchForm.username,
     watchForm.date,
     watchForm.text,
@@ -167,7 +168,7 @@ const TwitterPost = () => {
               name='sendertext'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Sender's message text</FormLabel>
+                  <FormLabel>Sender&apos;s message text</FormLabel>
                   <FormControl>
                     <Textarea {...field} />
                   </FormControl>
@@ -180,7 +181,7 @@ const TwitterPost = () => {
               name='senderdate'
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Sender's message date</FormLabel>
+                  <FormLabel>Sender&apos;s message date</FormLabel>
                   <FormControl>
                     <Input {...field} />
                   </FormControl>
@@ -212,7 +213,7 @@ const TwitterPost = () => {
               )}
             />
             <FormItem>
-              <FormLabel>Sender's message picture</FormLabel>
+              <FormLabel>Sender&apos;s message picture</FormLabel>
               <FormDropzone endpoint='msgPic' />
             </FormItem>
             <FormField
@@ -223,7 +224,7 @@ const TwitterPost = () => {
                   <div className='space-y-0.5'>
                     <FormLabel>Reverse message order</FormLabel>
                     <FormDescription>
-                      Don't forget to use correct dates on messages!
+                      Don&apos;t forget to use correct dates on messages!
                     </FormDescription>
                   </div>
                   <FormControl>

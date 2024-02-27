@@ -44,7 +44,13 @@ const MessageForm = () => {
       theme: watchForm.theme || "dark",
       reverseorder: watchForm.reverseorder || false,
     });
-  }, [watchForm.text, watchForm.sendertext, watchForm.theme, watchForm.reverseorder]);
+  }, [
+    setChatGptForm,
+    watchForm.text,
+    watchForm.sendertext,
+    watchForm.theme,
+    watchForm.reverseorder,
+  ]);
 
   const [{ isLoading }, convert] = useToPng<HTMLDivElement>({
     pixelRatio: 2.8,
@@ -70,7 +76,7 @@ const MessageForm = () => {
                 name='sendertext'
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Sender's message text</FormLabel>
+                    <FormLabel>Sender&apos;s message text</FormLabel>
                     <FormControl>
                       <Textarea {...field} />
                     </FormControl>
