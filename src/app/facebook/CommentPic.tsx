@@ -57,7 +57,7 @@ const CommentPic = () => {
                 height={100}
                 style={{
                   width: "100%",
-                  maxHeight: "30rem",
+                  maxHeight: "25rem",
                   maxWidth: "20rem",
                 }}
                 src={postPath}

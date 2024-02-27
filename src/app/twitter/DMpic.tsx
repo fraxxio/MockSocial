@@ -72,6 +72,8 @@ const DMpic = () => {
                   height={100}
                   style={{
                     width: "75%",
+                    maxHeight: "25rem",
+                    maxWidth: "40rem",
                   }}
                   sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                   className='rounded-3xl mb-1.5 ml-auto'
@@ -104,6 +106,8 @@ const DMpic = () => {
                   height={100}
                   style={{
                     width: "75%",
+                    maxHeight: "25rem",
+                    maxWidth: "40rem",
                   }}
                   sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                   className='rounded-3xl mb-1.5'
