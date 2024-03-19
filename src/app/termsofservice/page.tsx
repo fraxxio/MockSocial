@@ -2,7 +2,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className='container max-w-[60rem] mt-6 py-4 border border-gray-500 border-opacity-30 rounded-md bg-slate-900 leading-7'>
+    <div className='container max-w-[60rem] mt-6 py-4 border border-gray-500 border-opacity-30 rounded-md dark:bg-slate-900 leading-7 bg-slate-300'>
       <h1 className='text-2xl text-center font-semibold pb-4'>Terms of service</h1>
       <p className='whitespace-pre-line pb-4'>
         Welcome to MockSocial! These Terms of Service govern your use of our website and services.

@@ -2,7 +2,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className='container mt-40 py-4 border border-gray-500 border-opacity-30 rounded-md bg-slate-900'>
+    <div className='container mt-40 py-4 border border-gray-500 border-opacity-30 rounded-md dark:bg-slate-900 bg-slate-300'>
       <h1 className='text-2xl text-center font-semibold pb-4'>How to use the app?</h1>
       <ul className='list-disc'>
         <li>
