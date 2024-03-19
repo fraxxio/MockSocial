@@ -79,6 +79,8 @@ const PostPic = () => {
                 height={100}
                 style={{
                   width: "100%",
+                  maxHeight: "20rem",
+                  maxWidth: "40rem",
                 }}
                 src={postPath}
                 alt='Tweet Picture'

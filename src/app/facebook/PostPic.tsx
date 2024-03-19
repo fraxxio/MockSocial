@@ -108,7 +108,7 @@ const PostPic = () => {
               height={100}
               style={{
                 width: "100%",
-                maxHeight: "40rem",
+                maxHeight: "35rem",
                 objectFit: "cover",
               }}
               alt='Post picture'

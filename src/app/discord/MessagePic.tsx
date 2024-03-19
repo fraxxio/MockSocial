@@ -92,7 +92,7 @@ const MessagePic = () => {
                     height={100}
                     style={{
                       width: "65%",
-                      maxHeight: "40rem",
+                      maxHeight: "30rem",
                     }}
                     sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                     className='rounded-xl mt-1'
