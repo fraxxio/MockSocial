@@ -40,7 +40,7 @@ MockSocial is a app that allows you to generate fake social media post screensho
 
 ## Features
 
-- [x] You can choose from 6 different social media platforms: Twitter, Instagram, Facebook, Discord, ChatGPT, Facebook.
+- [x] You can choose from 6 different social media platforms: Twitter, Instagram, Facebook, Discord, ChatGPT.
 - [x] Ability to add custom values to the image:
   - [x] Username.
   - [x] Post text, or message text.
