@@ -34,7 +34,7 @@
 
 ## About
 
-MockSocial is a app that allows you to generate fake social media post screenshots.
+MockSocial - Generate realistic fake social media post or message screenshots for Twitter, Instagram, Facebook, Discord, and ChatGPT. Customize usernames, text, profile pictures, posts, reactions, badges, and themes effortlessly.
 
 ---
 
