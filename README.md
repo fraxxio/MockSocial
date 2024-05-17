@@ -2,11 +2,11 @@
 <img alt="project" title="#About" width="150px" src="./public/Logo.png" />
 </p>
 <h1 align="center">
-  <a href="https://mocksocial.vercel.app/"> MockSocial | Generate fake screenshots of social media posts</a>
+  <a href="https://mocksocial.devrokas.com/"> MockSocial | Generate fake screenshots of social media posts</a>
 </h1>
 
 <p align="center"> 
-  <a href="https://mocksocial.vercel.app/"><b>https://mocksocial.vercel.app/</b></a>
+  <a href="https://mocksocial.devrokas.com/"><b>https://mocksocial.devrokas.com/</b></a>
 </p>
 
 
